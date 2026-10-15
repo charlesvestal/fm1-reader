@@ -20,8 +20,3 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
----
-
-Exception: the voice. web/espeak/ (eSpeak NG compiled to WebAssembly, with tts_wrap.c) and web/tts_worker.js,
-which runs it, are GPL-3.0-or-later: see web/espeak/LICENSE. The rest of the page talks to them only by
-messages to a worker.
