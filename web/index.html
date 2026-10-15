@@ -8,13 +8,13 @@
 <meta name="description" content="Hear what your FM-1's screen says: with your own screen reader, or with this page's voice.">
 <style>
   :root { --bg: #fbf6ec; --card: #fffdf8; --fg: #2a2522; --dim: #6f655c; --line: #e6dccb;
-          --coral: #e8664f; --teal: #1f8a83; --focus: #1f6fd1; }
+          --coral: #c2462f; --teal: #1a7872; --on-teal: #fff; --focus: #1f6fd1; }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) { --bg: #1b1816; --card: #24201d; --fg: #f3ece2; --dim: #b3a797; --line: #3a332d;
-                                      --coral: #ff8a73; --teal: #4cc2b8; --focus: #79adff; }
+                                      --coral: #ff8a73; --teal: #4cc2b8; --on-teal: #1b1816; --focus: #79adff; }
   }
   :root[data-theme="dark"] { --bg: #1b1816; --card: #24201d; --fg: #f3ece2; --dim: #b3a797; --line: #3a332d;
-                             --coral: #ff8a73; --teal: #4cc2b8; --focus: #79adff; }
+                             --coral: #ff8a73; --teal: #4cc2b8; --on-teal: #1b1816; --focus: #79adff; }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--bg); color: var(--fg); font: 17px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
   main { max-width: 760px; margin: 0 auto; padding: 24px 16px 48px; }
@@ -22,36 +22,51 @@
   h1 span { color: var(--coral); }
   .lead { color: var(--dim); margin: 0 0 20px; }
   .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px; margin-bottom: 16px; }
-  button { font: inherit; font-weight: 600; border-radius: 10px; border: 2px solid var(--teal); background: var(--teal); color: #fff;
+  button { font: inherit; font-weight: 600; border-radius: 10px; border: 2px solid var(--teal); background: var(--teal); color: var(--on-teal);
            padding: 10px 18px; cursor: pointer; min-height: 44px; }
   button.quiet { background: transparent; color: var(--teal); }
   button:disabled { opacity: .45; cursor: default; }
   :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+  .skip { position: absolute; left: 16px; top: -200px; background: var(--card); color: var(--fg); padding: 8px 14px;
+          border: 2px solid var(--focus); border-radius: 8px; font-weight: 600; z-index: 1; }
+  .skip:focus { top: 8px; }
   .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
-  #status { font-weight: 600; }
+  .need { color: var(--dim); font-size: .95rem; margin: 10px 0 0; }
+  #status { font-weight: 600; flex: 1 1 16em; }
   #status[data-s="listening"] { color: var(--teal); }
-  #status[data-s="lost"], #status[data-s="error"] { color: var(--coral); }
+  #status[data-s="lost"] { color: var(--coral); }
+  #error { color: var(--coral); font-weight: 600; margin: 8px 0 0; }
+  #error:empty { margin: 0; }
   #now { font-size: 1.7rem; line-height: 1.3; min-height: 2.6em; margin: 0; overflow-wrap: anywhere; }
   #now:empty::before { content: "Nothing yet."; color: var(--dim); font-size: 1.1rem; }
-  fieldset { border: 0; padding: 0; margin: 0; }
+  fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
   legend { font-weight: 600; margin-bottom: 6px; padding: 0; }
   label { display: flex; gap: 10px; align-items: center; margin: 6px 0; }
-  input[type="range"] { flex: 1; max-width: 260px; accent-color: var(--teal); }
-  input[type="checkbox"], input[type="radio"] { width: 20px; height: 20px; accent-color: var(--teal); }
+  .slider { display: flex; gap: 10px; align-items: center; margin: 6px 0; }
+  .slider label { margin: 0; min-width: 4.2em; }
+  .slider span { min-width: 3.5em; color: var(--dim); }
+  input[type="range"] { flex: 1; min-width: 0; max-width: 260px; accent-color: var(--teal); }
+  input[type="checkbox"], input[type="radio"] { flex: none; width: 20px; height: 20px; accent-color: var(--teal); }
   select { font: inherit; padding: 6px; border-radius: 8px; border: 1px solid var(--line); background: var(--card); color: var(--fg); }
-  #log { list-style: none; margin: 0; padding: 0; max-height: 320px; overflow-y: auto; }
+  #h-log { font-size: 1.1rem; margin: 0; }
+  #log-note { margin: 0 0 8px; }
+  #log { list-style: none; margin: 0; padding: 0 4px 0 0; max-height: 320px; overflow-y: auto; border-radius: 6px; }
+  #log:empty { display: none; }
   #log li { padding: 6px 0; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
   #log li:first-child { font-weight: 600; }
-  #log li.warn { color: var(--coral); }
+  #log li.warn { color: var(--coral); border-left: 4px solid var(--coral); padding-left: 8px; }
+  #log-empty { color: var(--dim); margin: 0; }
   .keys { color: var(--dim); font-size: .95rem; }
   kbd { font: inherit; font-weight: 600; border: 1px solid var(--line); border-radius: 5px; padding: 0 6px; background: var(--bg); }
-  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
   footer { color: var(--dim); font-size: .9rem; }
   footer a { color: var(--teal); }
+  footer button { font-size: .9rem; min-height: 36px; padding: 4px 12px; }
   @media (max-width: 480px) { #now { font-size: 1.35rem; } }
 </style>
 </head>
 <body>
+<a class="skip" href="#h-log">Skip to the log</a>
 <main>
   <h1>FM-1 <span>Screen Reader</span></h1>
   <p class="lead">Plug in your FM-1 with a USB cable and connect. Everything the screen shows is read out: pages, knobs as you
@@ -61,51 +76,65 @@
     <h2 id="h-conn" class="sr">Connection</h2>
     <div class="row">
       <button id="connect">Connect</button>
-      <span id="status" role="status">Not connected.</span>
+      <p id="status" role="status" style="margin:0">Not connected.</p>
     </div>
+    <p id="error" role="alert"></p>
+    <p class="need">Needs Chrome, Edge or Opera on a computer, and an FM-1 firmware with screen reader support. When the
+      browser asks to let this page use MIDI devices, allow it.</p>
   </section>
 
   <section class="card" aria-labelledby="h-now">
-    <h2 id="h-now" class="sr">The screen</h2>
+    <h2 id="h-now" class="sr">The FM-1's screen</h2>
     <p id="now" aria-hidden="true"></p>
     <div class="row">
-      <button id="where" class="quiet" disabled>Read the whole screen</button>
-      <button id="again" class="quiet" disabled>Say it again</button>
+      <button id="where" class="quiet" aria-keyshortcuts="W" disabled>Read the whole screen</button>
+      <button id="again" class="quiet" aria-keyshortcuts="A" disabled>Say it again</button>
     </div>
-    <p class="keys">Keys: <kbd>W</kbd> the whole screen, <kbd>A</kbd> again, <kbd>S</kbd> stop speaking, <kbd>V</kbd> voice on or off.</p>
-    <label><input id="keys" type="checkbox" checked> Single-letter keys (turn off if they get in the way of your screen reader's own)</label>
+    <p class="keys" id="keys-help">Keys: <kbd>W</kbd> the whole screen, <kbd>A</kbd> again, <kbd>S</kbd> stop speaking,
+      <kbd>V</kbd> voice on or off. They don't work while you type or are on a setting.</p>
+    <label><input id="keys" type="checkbox" checked aria-describedby="keys-help"> Single-letter keys (turn off if they get in the way of your screen reader's own)</label>
   </section>
 
   <section class="card" aria-labelledby="h-voice">
     <h2 id="h-voice" class="sr">Voice</h2>
-    <fieldset>
+    <fieldset aria-describedby="mode-help">
       <legend>Who reads it</legend>
       <label><input type="radio" name="mode" value="sr" checked> My own screen reader (VoiceOver, NVDA, JAWS, TalkBack)</label>
       <label><input type="radio" name="mode" value="voice"> This page's voice</label>
-      <p class="keys" style="margin:4px 0 0">Your screen reader speaks while this window is in front. This page's voice
+      <p class="keys" id="mode-help" style="margin:4px 0 0">Your screen reader speaks while this window is in front. This page's voice
         keeps speaking from a background tab, while you play the FM-1.</p>
     </fieldset>
     <div id="voice-opts">
-      <label>Speed <input id="rate" type="range" min="120" max="450" step="10" value="260"><span id="rate-v">260</span></label>
-      <label>Pitch <input id="pitch" type="range" min="0" max="99" step="1" value="50"><span id="pitch-v">50</span></label>
-      <label>Volume <input id="vol" type="range" min="0" max="1" step="0.05" value="0.9"></label>
+      <div class="slider"><label for="rate">Speed</label><input id="rate" type="range" min="120" max="450" step="10" value="260"><span id="rate-v" aria-hidden="true">260</span></div>
+      <div class="slider"><label for="pitch">Pitch</label><input id="pitch" type="range" min="0" max="99" step="1" value="50"><span id="pitch-v" aria-hidden="true">50</span></div>
+      <div class="slider"><label for="vol">Volume</label><input id="vol" type="range" min="0" max="1" step="0.05" value="0.9"><span id="vol-v" aria-hidden="true">90%</span></div>
       <label><input id="cutoff" type="checkbox" checked> New messages cut off the one being said</label>
+      <button id="stop" class="quiet" aria-keyshortcuts="S">Stop speaking</button>
     </div>
   </section>
 
   <section class="card" aria-labelledby="h-log">
-    <h2 id="h-log" style="font-size:1.1rem;margin:0 0 8px">What it said</h2>
-    <ol id="log" reversed aria-live="off"></ol>
+    <h2 id="h-log" tabindex="-1">What it said</h2>
+    <p class="keys" id="log-note">Newest first, the last 200.</p>
+    <p id="log-empty">Nothing yet.</p>
+    <ol id="log" aria-labelledby="h-log" aria-describedby="log-note" tabindex="0"></ol>
   </section>
 
-  <!-- for the computer's screen reader: what the FM-1 says, read as it changes -->
-  <div id="live-a" class="sr" aria-live="assertive" aria-atomic="true"></div>
-  <div id="live-p" class="sr" aria-live="polite" aria-atomic="true"></div>
+  <!-- for the computer's screen reader: what the FM-1 says, read as it changes. Two of each, used in turn (the
+       other one emptied), so the same words twice in a row are read again -->
+  <div id="live-a1" class="sr" aria-live="assertive" aria-atomic="true"></div>
+  <div id="live-a2" class="sr" aria-live="assertive" aria-atomic="true"></div>
+  <div id="live-p1" class="sr" aria-live="polite" aria-atomic="true"></div>
+  <div id="live-p2" class="sr" aria-live="polite" aria-atomic="true"></div>
 
   <footer>
     <p>Works in Chrome, Edge and Opera (Web MIDI). The voice is <a href="https://github.com/espeak-ng/espeak-ng">eSpeak NG</a>
       (GPL-3.0), running in this page. Every FM-1 firmware with screen reader support works here: each says its own
       words. <a href="https://github.com/charlesvestal/fm1-reader">Add support to a firmware</a>.</p>
+    <p>Making a firmware whose words file is not published yet?
+      <button id="open-words" class="quiet">Use a words file</button>
+      <input id="words-file" type="file" accept=".json,application/json" hidden aria-label="Words file">
+      (or drop it on this page)</p>
   </footer>
 </main>
 <script type="module">
@@ -150,10 +179,14 @@ if (prefs.mode) document.querySelector(`input[name="mode"][value="${prefs.mode}"
 for (const k of ['rate', 'pitch', 'vol']) if (prefs[k] != null) $(k).value = prefs[k];
 if (prefs.cutoff != null) $('cutoff').checked = prefs.cutoff;
 if (prefs.keys != null) $('keys').checked = prefs.keys;
+// the sliders' values, as seen and as said
+const VALUE = { rate: (v) => `${v} words a minute`, pitch: (v) => `${v}`, vol: (v) => `${Math.round(v * 100)} percent` };
 function showSettings() {
     $('voice-opts').hidden = mode() !== 'voice';
     $('rate-v').textContent = $('rate').value;
     $('pitch-v').textContent = $('pitch').value;
+    $('vol-v').textContent = Math.round($('vol').value * 100) + '%';
+    for (const k in VALUE) $(k).setAttribute('aria-valuetext', VALUE[k]($(k).value));
 }
 document.querySelectorAll('input').forEach((i) => i.addEventListener('input', () => {
     Object.assign(prefs, { mode: mode(), rate: +$('rate').value, pitch: +$('pitch').value, vol: +$('vol').value,
@@ -164,17 +197,34 @@ document.querySelectorAll('input').forEach((i) => i.addEventListener('input', ()
 }));
 showSettings();
 
-function setStatus(s, text) { $('status').dataset.s = s; $('status').textContent = text; }
+// the status line (polite): said only when it changes. A failure is an alert instead, next to it
+function setStatus(s, text) {
+    const err = s === 'error';
+    $('error').textContent = err ? text : '';
+    $('status').dataset.s = s;
+    const t = err ? '' : text;
+    if ($('status').textContent !== t) $('status').textContent = t;
+}
+// for the computer's screen reader: two regions of each kind, used in turn, the other one emptied (the same
+// words twice in a row are a change, and are read again)
+const flip = { a: false, p: false };
+function announce(text, urgent) {
+    const k = urgent ? 'a' : 'p';
+    flip[k] = !flip[k];
+    const [on, off] = flip[k] ? [k + '1', k + '2'] : [k + '2', k + '1'];
+    $('live-' + off).textContent = '';
+    $('live-' + on).textContent = text;
+}
 function showFound() {
     const names = reader ? reader.readers.map((f) => f.name) : [];
-    const hint = mode() === 'sr' ? ' Your screen reader reads it. No screen reader? Choose "This page\'s voice" below, or press V.' : '';
+    const hint = mode() === 'sr' ? ' No screen reader? Press V for this page\'s voice.' : '';
     if (names.length) setStatus(wordsNote ? 'lost' : 'listening', `Listening to ${names.join(' and ')}.` + (wordsNote ? ` Note: ${wordsNote}.` : '') + hint);
     else setStatus('lost', 'No FM-1 is answering. Plug it in with a USB cable; its firmware needs screen reader support.');
     $('where').disabled = $('again').disabled = !names.length;
 }
 
 // what the FM-1 said: its screen's text in its own words, shown and spoken as they come
-let liveFlip = false, keeping = 0;
+let keeping = 0;
 function say(screen, now, keep, list = words) {
     const text = spoken(screen, list);
     last = text;
@@ -184,18 +234,17 @@ function say(screen, now, keep, list = words) {
     const li = document.createElement('li');
     li.textContent = text;
     if (keep) li.className = 'warn';
+    if (keep) { const w = document.createElement('span'); w.className = 'sr'; w.textContent = 'Warning: '; li.prepend(w); }
     $('log').prepend(li);
     while ($('log').children.length > 200) $('log').lastChild.remove();
+    $('log-empty').hidden = true;
     if (mode() === 'voice') {
         // a warning is heard whole: what follows it waits instead of cutting it off
         const p = tts && tts.speak(text, { rate: +$('rate').value, pitch: +$('pitch').value, volume: +$('vol').value,
                                            interrupt: now && $('cutoff').checked && !keeping });
         if (keep && p) { keeping++; p.then(() => keeping--); }
     } else {
-        // the same words twice in a row are not read again by some screen readers: alternate the text
-        const el = now || keep ? $('live-a') : $('live-p');
-        liveFlip = !liveFlip;
-        el.textContent = text + (liveFlip ? '' : ' ');
+        announce(text, now || keep);
     }
 }
 
@@ -234,21 +283,25 @@ async function connect() {
 $('connect').onclick = connect;
 $('where').onclick = () => reader && reader.where();
 $('again').onclick = () => lastScreen && say(lastScreen, true, lastKeep);
-// a words file dropped on the page (a firmware being made, not published yet)
+$('stop').onclick = () => tts && tts.stop();
+// a words file opened or dropped on the page (a firmware being made, not published yet)
+$('open-words').onclick = () => $('words-file').click();
+$('words-file').onchange = () => { useWords($('words-file').files[0]); $('words-file').value = ''; };
 addEventListener('dragover', (e) => e.preventDefault());
-addEventListener('drop', async (e) => {
-    e.preventDefault();
-    const file = e.dataTransfer.files[0];
+addEventListener('drop', (e) => { e.preventDefault(); useWords(e.dataTransfer.files[0]); });
+async function useWords(file) {
     if (!file) return;
     try {
         words = wordsOf(JSON.parse(await file.text()));
         wordsNote = '';
         if (reader) for (const f of reader.readers) f.list = words;
         setStatus('listening', `Using the words in ${file.name}.`);
-    } catch (err) { setStatus('error', `${file.name} is not a words file.`); }
-});
+    } catch (err) { setStatus('error', `${file.name} is not a words file: choose the .json file the firmware's build makes.`); }
+}
 addEventListener('keydown', (e) => {
-    if (!$('keys').checked || e.target.closest('input, select, textarea') || e.metaKey || e.ctrlKey || e.altKey) return;
+    // not while typing or on a setting, not with a modifier, not held down
+    if (!$('keys').checked || e.repeat || e.metaKey || e.ctrlKey || e.altKey ||
+        e.target.closest('input, select, textarea, [contenteditable], [role="slider"], [role="radio"]')) return;
     const k = e.key.toLowerCase();
     if (k === 'w' && reader) reader.where();
     else if (k === 'a' && lastScreen) say(lastScreen, true, lastKeep);
@@ -259,7 +312,7 @@ addEventListener('keydown', (e) => {
         prefs.mode = v; save(); showSettings();
         if (v !== 'voice' && tts) tts.stop();
         if (v === 'voice' && tts) { tts.unlock(); tts.speak('Voice on'); }
-        else $('live-a').textContent = 'Voice off: your screen reader reads it';
+        else announce('Voice off: your screen reader reads it', true);
     } else return;
     e.preventDefault();
 });

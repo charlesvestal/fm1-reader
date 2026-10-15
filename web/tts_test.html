@@ -12,17 +12,21 @@
   label span { width: 4rem; } label output { width: 3rem; text-align: right; }
   input[type=range] { flex: 1; }
   button { font-size: 1rem; padding: .5rem 1.2rem; margin-right: .5rem; }
-  #status { color: #777; font-size: .9rem; margin-top: 1rem; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  #status { color: #5c5c5c; font-size: .9rem; margin-top: 1rem; }
 </style>
 </head>
 <body>
+<main>
 <h1>Reader speech test</h1>
+<label for="text" class="sr">Text to speak</label>
 <input type="text" id="text" value="Cutoff, sixty four. Pattern 3 saved.">
 <label><span>Rate</span><input type="range" id="rate" min="80" max="450" value="230"><output id="rateV">230</output></label>
 <label><span>Pitch</span><input type="range" id="pitch" min="0" max="99" value="50"><output id="pitchV">50</output></label>
 <label><input type="checkbox" id="queue"> queue (don't interrupt)</label>
 <button id="speak" disabled>Speak</button><button id="stop">Stop</button><button id="knob">Knob sweep</button>
-<div id="status">loading…</div>
+<div id="status" role="status">loading…</div>
+</main>
 <script type="module">
 import { createTTS } from './tts.js';
 const $ = (id) => document.getElementById(id);
