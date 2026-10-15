@@ -62,5 +62,5 @@ INTEGRATION.md). X0X's support in all comes to 2.3 KB of flash.
 
 ## Credits
 
-Built on [Felucca](https://github.com/hugelton/Felucca) (Hügelton Instruments). The voice is
-[eSpeak NG](https://github.com/espeak-ng/espeak-ng). GPL-3.0.
+For FM-1 firmwares built on [Felucca](https://github.com/hugelton/Felucca) (Hügelton Instruments): the hookup
+uses their shared USB and update code. The voice is [eSpeak NG](https://github.com/espeak-ng/espeak-ng). GPL-3.0.
