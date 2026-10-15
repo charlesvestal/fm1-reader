@@ -13,6 +13,8 @@ const al = (c) => /[A-Za-z]/.test(c || '');
 const dg = (c) => /[0-9]/.test(c || '');
 const an = (c) => al(c) || dg(c);
 const NOTE = { 2: 'half', 4: 'quarter', 8: 'eighth', 16: 'sixteenth', 32: 'thirty-second' };
+// after a capital A, these make it the note, not the article
+const NOTE_WORD = /^(MINOR|MAJOR|MIN|MAJ|SHARP|FLAT|NATURAL|DORIAN|PHRYGIAN|LYDIAN|MIXOLYDIAN|LOCRIAN|AEOLIAN|IONIAN|PENTATONIC|BLUES|HARMONIC|MELODIC|CHROMATIC|minor|major|sharp|flat)\b/;
 
 function match(s, i, k) {                         // length matched at s[i], and the numbers
     const caps = [];
@@ -98,7 +100,8 @@ export function spoken(s, words = []) {
                 continue;
             }
         }
-        if (start && c === 'A' && s[i + 1] === ' ' && al(s[i + 2]) && al(s[i + 3])) {   // A NEW LINE: the article
+        if (start && c === 'A' && s[i + 1] === ' ' && al(s[i + 2]) && al(s[i + 3]) &&
+            !NOTE_WORD.test(s.slice(i + 2))) {             // A NEW LINE: the article (A MINOR, A FLAT: the note)
             o += 'a';
             i++;
             continue;

@@ -75,8 +75,8 @@ for (const [kind, screen] of lines) {
     if (/\s[,.:;?!]/.test(said)) add('error', 'punctuation', kind, said, 'a space before a mark');
     if (/\s{2,}/.test(said)) add('warn', 'punctuation', kind, said, 'two spaces');
     // 5. no word or phrase twice in a row ("909. 909 KIT"; a heading and its first item, "retrigger: retrigger
-    //    times 2", are two things)
-    for (const part of said.split(':')) {
+    //    times 2", and the items of a list, "echo, echo time", are separate things)
+    for (const part of said.split(/[:,]/)) {                         // (a list, "B flat, B", is not a repeat)
     const ws = part.toLowerCase().replace(/[^a-z0-9' ]/g, ' ').split(/\s+/).filter(Boolean);
     for (let n = 1; n <= 4; n++)
         for (let i = 0; i + 2 * n <= ws.length; i++)
