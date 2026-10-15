@@ -8,7 +8,9 @@ WCAG 2.2 AA. These are the FM-1 sites' own patterns: use them, so the sites stay
 
 ```sh
 cd ../fm1-reader/tools/a11y && npm install && npx playwright install chromium   # once
-node ../fm1-reader/tools/a11y/check.mjs build/pages        # the built site: every page, desktop light + phone dark
+node ../fm1-reader/tools/a11y/check.mjs build/pages --click 'emu/index.html=#go'
+                     # the built site: every page at desktop and phone widths, light and dark; the emulator
+                     # also once it's switched on (use its own Switch on button's selector)
 ```
 
 - **The goal:** no serious or critical problems, and no horizontal scroll at phone width.
@@ -54,6 +56,17 @@ node ../fm1-reader/tools/a11y/check.mjs build/pages        # the built site: eve
 **Code and wide content.** A `<pre>` or table that scrolls gets `tabindex="0"` and an `aria-label`
 ("Command"), so the keyboard can scroll it.
 
+**Screenshots in the manual** use `![what the screen shows](img/x.png "caption")`: the alt text says what is
+on the screen, and the title stays as the visible caption (the sites' `manual_html.py` does this).
+
+**Language.** A language switch is named in its own language (`<button lang="ja">日本語</button>`), and the page's
+`lang` changes with the text.
+
+**Light-only sites** say so (`color-scheme: light`), and still meet contrast in a dark-mode browser.
+
+**Buttons that become unavailable** while focused (Send, while sending) use `aria-disabled="true"`, not
+`disabled`, so focus stays put.
+
 **Images.**
 - Pictures of the screen get an `alt` saying what the screen shows, written for the content.
   - Bad: `alt="screenshot"`.
@@ -74,7 +87,30 @@ node ../fm1-reader/tools/a11y/check.mjs build/pages        # the built site: eve
   words (`words.js` and the firmware's words file) and a live region. Add a "Speak the screen" choice, as
   on the reader page. Otherwise, say plainly that the screen is visual only.
 - **Keyboard shortcuts** for playing are written on the page, single letters only while the panel has
-  focus, and can be turned off.
+  focus, and can be turned off. Don't use Shift or Space as playing shortcuts: Shift+Tab and pressing a
+  focused control need them.
+- **Switching on.** The panel is `inert` until the emulator is switched on. Then focus moves to the panel,
+  since the Switch on button is gone.
+- **Presses** from the keyboard or a screen reader's click last at least one audio block (60 ms), or the
+  firmware, reading inputs every 16 ms, may miss them. Space/Enter holds while held; Shift+Space or
+  Shift+Enter latches a button for two-button combinations.
+- **Keys** are one Tab stop, with the arrow keys moving between them (a roving tabindex), named by note in
+  words ("F sharp 3 key"). A flat in a name keeps its shown text too ("Eb (E flat)"), for voice control.
+- **Size.** At phone width, the controls are at least 24 px (2.5.8). Give the drawn panel a minimum width, and
+  let its own box scroll sideways rather than the page.
+- **Endless knobs** as `role="button"` (turned with the arrows) need NVDA's focus mode. Check with NVDA. If
+  the arrows don't reach them in browse mode, make them `role="slider"` with `aria-valuetext` saying the
+  readout ("Cutoff 64").
+- **The screen reader in the emulator** works like the reader page:
+  - HELLO goes in through `web_sysex` every 2 s, and the SAY frames are read from `web_said_buf` / `web_said_len`.
+  - The words file is fetched from the site's own `../words/<id>.json` (the id is the HELLO's link).
+  - The choice of who reads it defaults to the user's screen reader, with the page's voice or nobody as the
+    alternatives. Add "Read the whole screen" and "Say it again" buttons.
+  - Drop a NOW message that a later NOW message replaces before it is shown.
+  - The site build copies `words.js`, `tts.js`, `tts_worker.js` and `espeak/` from `../fm1-reader/web`
+    (`FM1_READER` overrides), and refuses to build without them.
+- **SVG panels:** Chrome makes an SVG element focusable once it has a focus or blur listener. Give it
+  `tabindex="-1"`, or listen on its parent.
 - **Audio** starts only on a user action, and there's a visible, labelled stop or mute.
 
 **Motion.** Respect `prefers-reduced-motion`. Nothing flashes more than three times a second.
