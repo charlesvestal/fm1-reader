@@ -5,7 +5,9 @@ sends its screen over USB with a link to its own words, and the reader page spea
 or hands them to your screen reader (VoiceOver, NVDA, JAWS, TalkBack).
 
 **Use it:** plug in the FM-1, open https://charlesvestal.github.io/fm1-reader/ in Chrome or Edge, and click
-Connect. Firmwares with support: X0X.
+Connect. Firmwares with support: [X0X](https://charlesvestal.github.io/fm1-x0x/) 1.1.0,
+[AMB-1](https://charlesvestal.github.io/fm1-amb/) 1.2, [Polly](https://charlesvestal.github.io/fm1-polly/) 0.4.3,
+[MONK-1](https://charlesvestal.github.io/fm1-monk/) 0.9.1, [Mocky](https://charlesvestal.github.io/fm1-mocky/) 0.9.1.
 
 ## For firmware developers
 
