@@ -29,7 +29,7 @@ const MUSIC = `arp arpeggiator reverb delay lfo cutoff resonance envelope sustai
   autosave autosaved bpm usb sixteenth thirty-second triplet dotted tempo swing groove fill loop loops crunch fuzz
   saturation distortion compressor makeup limiter glue drive overdrive preset presets algorithm velocity aftertouch
   polyphony mono stereo wav sysex firmware fm-1 ok undo redo octave octaves cancelled cancelling colour
-  slideshow kilobytes megabytes gallery lowest highest box bluetooth`.split(/\s+/);
+  slideshow kilobytes megabytes gallery lowest highest box bluetooth held melodies fifties sixties seventies eighties nineties intro outro quantise quantize`.split(/\s+/);
 MUSIC.forEach((w) => words.add(w));
 const allowFile = opt('--allow');
 if (allowFile) for (const w of fs.readFileSync(allowFile, 'utf8').split('\n')) if (w.trim() && !w.startsWith('#')) words.add(w.trim().toLowerCase());

@@ -63,9 +63,9 @@ SAY flags:
 
 - **Silent until asked.** A device sends nothing until a HELLO arrives, so a DAW on the same port never
   sees a byte. After 5 s without a HELLO, it stops.
-- **The first HELLO** after nobody was listening also means WHERE. A reader should still send WHERE itself
-  once the device has answered its HELLO: another reader may already be listening, so the device doesn't
-  treat this HELLO as news.
+- **The first HELLO** after nobody was listening also means WHERE: the device sends the whole screen by
+  itself. If nothing arrives within about 400 ms of the HELLO answer, the reader sends WHERE itself; this
+  happens when another reader was already listening, so the HELLO wasn't news to the device.
 - **One message at a time.** A device takes one incoming SysEx at a time, and one that arrives while it is
   busy can be lost. Wait for the HELLO answer before sending WHERE.
 - **Not too often.** A knob's value is sent once it has been still for about 120 ms, and at least every

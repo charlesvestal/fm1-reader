@@ -17,6 +17,7 @@ if not name:
 inp = mido.open_input(next(n for n in mido.get_input_names() if n.split(":")[0] == name.split(":")[0]))
 out = mido.open_output(name)
 t0 = last = 0.0
+where_at, said = 0, False
 t0 = time.time()
 while not a.seconds or time.time() - t0 < a.seconds:
     if time.time() - last > 2:
@@ -29,11 +30,14 @@ while not a.seconds or time.time() - t0 < a.seconds:
             if d[3] == 1:
                 name, _, words = text.partition("\0")
                 print(f"hello: {name}  (words: {words or 'none'})", flush=True)
-                if a.where:                      # once it has answered (it takes one SysEx at a time)
-                    time.sleep(0.05)
-                    out.send(mido.Message("sysex", data=H + [3]))
-                    a.where = False
+                if a.where and not where_at:     # asked once it has answered (it takes one SysEx at a time),
+                    where_at = time.time() + 0.4  # and only if it didn't send the screen by itself
             else:
+                said = True
                 print("said%s: %s" % ("!" if d[4] & 1 else "", text), flush=True)
+    if where_at and time.time() > where_at:
+        if not said:
+            out.send(mido.Message("sysex", data=H + [3]))
+        where_at, a.where = 0, False
     time.sleep(0.01)
 out.send(mido.Message("sysex", data=H + [2]))

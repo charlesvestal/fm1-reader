@@ -25,6 +25,10 @@ static int ann_wire_send(const uint8_t *p, uint32_t n)   /* never waits: no room
 }
 ```
 
+**Other SysEx a firmware sends** (a backup stream, an editor's replies) shares the queue. If one of them
+sends a message in several pieces, `ann_wire_send` must refuse while it's busy (Polly checks its backup's
+busy flag), so a SAY never lands in the middle of it.
+
 **The send queue.** In `usb.c`, the SysEx queue must hold a whole SAY, `(ANN_MAX + 9) / 3` packets. With
 the default `ANN_MAX` of 240, set `#define SXQ 128u` (it was 64; this costs 256 B of RAM). The update loader
 includes `usb.c` too, so its RAM grows by the same amount; its build check must still pass. If RAM is tight,

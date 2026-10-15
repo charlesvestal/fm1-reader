@@ -14,7 +14,7 @@ const dg = (c) => /[0-9]/.test(c || '');
 const an = (c) => al(c) || dg(c);
 const NOTE = { 2: 'half', 4: 'quarter', 8: 'eighth', 16: 'sixteenth', 32: 'thirty-second' };
 // after a capital A, these make it the note, not the article
-const NOTE_WORD = /^(MINOR|MAJOR|MIN|MAJ|SHARP|FLAT|NATURAL|DORIAN|PHRYGIAN|LYDIAN|MIXOLYDIAN|LOCRIAN|AEOLIAN|IONIAN|PENTATONIC|BLUES|HARMONIC|MELODIC|CHROMATIC|minor|major|sharp|flat)\b/;
+const NOTE_WORD = /^(MINOR|MAJOR|MIN|MAJ|SHARP|FLAT|NATURAL|DORIAN|PHRYGIAN|LYDIAN|MIXOLYDIAN|LOCRIAN|AEOLIAN|IONIAN|PENTATONIC|BLUES|HARMONIC|MELODIC|CHROMATIC|SEVENTH|SIXTH|NINTH|ELEVENTH|THIRTEENTH|DIMINISHED|AUGMENTED|SUSPENDED|ADD|DOMINANT|POWER|minor|major|sharp|flat|seventh|diminished|augmented|suspended)\b/;
 
 function match(s, i, k) {                         // length matched at s[i], and the numbers
     const caps = [];
