@@ -80,8 +80,10 @@
     <h2 id="h-voice" class="sr">Voice</h2>
     <fieldset>
       <legend>Who reads it</legend>
-      <label><input type="radio" name="mode" value="voice" checked> This page's voice</label>
-      <label><input type="radio" name="mode" value="sr"> My own screen reader (VoiceOver, NVDA, JAWS, TalkBack)</label>
+      <label><input type="radio" name="mode" value="sr" checked> My own screen reader (VoiceOver, NVDA, JAWS, TalkBack)</label>
+      <label><input type="radio" name="mode" value="voice"> This page's voice</label>
+      <p class="keys" style="margin:4px 0 0">Your screen reader speaks while this window is in front. This page's voice
+        keeps speaking from a background tab, while you play the FM-1.</p>
     </fieldset>
     <div id="voice-opts">
       <label>Speed <input id="rate" type="range" min="120" max="450" step="10" value="260"><span id="rate-v">260</span></label>
@@ -165,7 +167,8 @@ showSettings();
 function setStatus(s, text) { $('status').dataset.s = s; $('status').textContent = text; }
 function showFound() {
     const names = reader ? reader.readers.map((f) => f.name) : [];
-    if (names.length) setStatus(wordsNote ? 'lost' : 'listening', `Listening to ${names.join(' and ')}.` + (wordsNote ? ` Note: ${wordsNote}.` : ''));
+    const hint = mode() === 'sr' ? ' Your screen reader reads it. No screen reader? Choose "This page\'s voice" below, or press V.' : '';
+    if (names.length) setStatus(wordsNote ? 'lost' : 'listening', `Listening to ${names.join(' and ')}.` + (wordsNote ? ` Note: ${wordsNote}.` : '') + hint);
     else setStatus('lost', 'No FM-1 is answering. Plug it in with a USB cable; its firmware needs screen reader support.');
     $('where').disabled = $('again').disabled = !names.length;
 }
