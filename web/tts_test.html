@@ -1,0 +1,45 @@
+<!doctype html>
+<!-- SPDX-License-Identifier: GPL-3.0-only -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reader speech test</title>
+<style>
+  body { font: 16px system-ui, sans-serif; max-width: 34rem; margin: 2rem auto; padding: 0 16px; background: #fbf6ee; color: #222; }
+  input[type=text] { width: 100%; box-sizing: border-box; font-size: 1.1rem; padding: .5rem; }
+  label { display: flex; gap: .75rem; align-items: center; margin: .75rem 0; }
+  label span { width: 4rem; } label output { width: 3rem; text-align: right; }
+  input[type=range] { flex: 1; }
+  button { font-size: 1rem; padding: .5rem 1.2rem; margin-right: .5rem; }
+  #status { color: #777; font-size: .9rem; margin-top: 1rem; }
+</style>
+</head>
+<body>
+<h1>Reader speech test</h1>
+<input type="text" id="text" value="Cutoff, sixty four. Pattern 3 saved.">
+<label><span>Rate</span><input type="range" id="rate" min="80" max="450" value="230"><output id="rateV">230</output></label>
+<label><span>Pitch</span><input type="range" id="pitch" min="0" max="99" value="50"><output id="pitchV">50</output></label>
+<label><input type="checkbox" id="queue"> queue (don't interrupt)</label>
+<button id="speak" disabled>Speak</button><button id="stop">Stop</button><button id="knob">Knob sweep</button>
+<div id="status">loading…</div>
+<script type="module">
+import { createTTS } from './tts.js';
+const $ = (id) => document.getElementById(id);
+for (const k of ['rate', 'pitch']) $(k).oninput = () => { $(k + 'V').value = $(k).value; };
+const t0 = performance.now();
+const tts = await createTTS();
+$('status').textContent = `ready in ${(performance.now() - t0).toFixed(0)} ms, ${tts.sampleRate} Hz`;
+$('speak').disabled = false;
+const opts = () => ({ rate: +$('rate').value, pitch: +$('pitch').value, interrupt: !$('queue').checked });
+$('speak').onclick = () => { tts.unlock(); tts.speak($('text').value, opts()); };
+$('text').onkeydown = (e) => { if (e.key === 'Enter') $('speak').onclick(); };
+$('stop').onclick = () => tts.stop();
+$('knob').onclick = () => {          // what a fast knob turn sends: each value cuts off the last
+  tts.unlock();
+  let v = 40;
+  const id = setInterval(() => { tts.speak(`Cutoff, ${v}`, opts()); if (++v > 52) clearInterval(id); }, 60);
+};
+</script>
+</body>
+</html>

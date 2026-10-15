@@ -1,0 +1,447 @@
+HELP	ARP BUTTON. TB-3PO: THE 303 LINE. GENERATOR (303A, 303B). AGAIN: THE NEXT PAGE	arp button. T B three P O: the three oh three line. generator (three oh three A, three oh three B). again: the next page
+HELP	ARP BUTTON. TB-3PO: THE 303 LINE. GENERATOR (303A, 303B). OCT+: A NEW LINE. OCT-: MUTATE IT. AGAIN: THE NEXT PAGE	arp button. T B three P O: the three oh three line. generator (three oh three A, three oh three B). octave up: a new line. octave down: mutate it. again: the next page
+HELP	EDIT BUTTON. THE PART'S SOUND. AGAIN: THE NEXT PAGE. HOLD A STEP + KNOB: P-LOCK. HOLD A STEP + SELECT: ITS CHANCE	edit button. the part's sound. again: the next page. hold a step plus knob: p-lock. hold a step plus select: its chance
+HELP	ENV BUTTON. HOLD + KEY: AN ACCENT. HOLD + KNOB: ITS DEFAULT	envelope button. hold plus key: an accent. hold plus knob: its default
+HELP	ENV BUTTON. HOLD + KEY: AN ACCENT. WRITING: + OCT: A REST. HOLD + KNOB: ITS DEFAULT	envelope button. hold plus key: an accent. writing: plus octave: a rest. hold plus knob: its default
+HELP	ENV BUTTON. HOLD + WHITE KEY: ACCENT. HOLD + BLACK KEY: LOUD HIT. HOLD + KNOB: ITS DEFAULT	envelope button. hold plus white key: accent. hold plus black key: loud hit. hold plus knob: its default
+HELP	FX BUTTON. THE EFFECTS: REVERB, DELAY, TAPE AND KIT DRIVE. AGAIN: THE NEXT PAGE	effects button. the effects: reverb, delay, tape and kit drive. again: the next page
+HELP	GLO BUTTON. SETTINGS, SAVE, CLEAR, FACTORY RESET, PERFORMANCE. AGAIN: CLOSE	global button. settings, save, clear, factory reset, performance. again: close
+HELP	HOME BUTTON. THE PATTERN: ALL FIVE PARTS. AGAIN: THE SONG. + SELECT: TEMPO. + WHITE KEY: PATTERN. + BLACK KEY: MUTE THE TRACK. + REC: UNDO. + PLAY: REDO. LIST: BACK. QUESTION: NO	home button. the pattern: all five parts. again: the song. plus select: tempo. plus white key: pattern. plus black key: mute the track. plus record: undo. plus play: redo. list: back. question: no
+HELP	HOME BUTTON. THE PATTERN: ALL FIVE PARTS. AGAIN: THE SONG. + SELECT: TEMPO. + WHITE KEY: PATTERN. + REC: UNDO. + PLAY: REDO. LIST: BACK. QUESTION: NO	home button. the pattern: all five parts. again: the song. plus select: tempo. plus white key: pattern. plus record: undo. plus play: redo. list: back. question: no
+HELP	LFO BUTTON. THE MIXER AND THE MASTER. AGAIN: THE NEXT PAGE	L F O button. the mixer and the master. again: the next page
+HELP	LFO BUTTON. THE MIXER AND THE MASTER. AGAIN: THE NEXT PAGE. HOLD + KEY: A SLIDE	L F O button. the mixer and the master. again: the next page. hold plus key: a slide
+HELP	LFO BUTTON. THE MIXER AND THE MASTER. AGAIN: THE NEXT PAGE. HOLD + KEY: A SLIDE. HOLD + OCT: A TIE	L F O button. the mixer and the master. again: the next page. hold plus key: a slide. hold plus octave: a tie
+HELP	LFO BUTTON. THE MIXER AND THE MASTER. AGAIN: THE NEXT PAGE. HOME + BLACK KEY: MUTE	L F O button. the mixer and the master. again: the next page. home plus black key: mute
+HELP	OCT- BUTTON. MUTATE THE LINE	octave down button. mutate the line
+HELP	OCT- BUTTON. PATTERNS 1-16	octave down button. patterns 1 to 16
+HELP	OCT- BUTTON. THE 16 STEPS BEFORE. PAGES: 1-16 17-32 33-48 49-64	octave down button. the 16 steps before. pages: 1 to 16, 17 to 32, 33 to 48, 49 to 64
+HELP	OCT- BUTTON. THE 16 STEPS BEFORE. PAGES: 1-16 17-32 33-48 49-64. HOLDING A STEP: ITS OCTAVE	octave down button. the 16 steps before. pages: 1 to 16, 17 to 32, 33 to 48, 49 to 64. holding a step: its octave
+HELP	OCT- BUTTON. THE KEYBOARD'S OCTAVE. LFO + OCT: A TIE. ENV + OCT: A REST	octave down button. the keyboard's octave. L F O plus octave: a tie. envelope plus octave: a rest
+HELP	OCT+ BUTTON. A NEW 303 LINE	octave up button. a new three oh three line
+HELP	OCT+ BUTTON. PATTERNS 17-32	octave up button. patterns 17 to 32
+HELP	OCT+ BUTTON. THE KEYBOARD'S OCTAVE. LFO + OCT: A TIE. ENV + OCT: A REST	octave up button. the keyboard's octave. L F O plus octave: a tie. envelope plus octave: a rest
+HELP	OCT+ BUTTON. THE NEXT 16 STEPS. PAGES: 1-16 17-32 33-48 49-64	octave up button. the next 16 steps. pages: 1 to 16, 17 to 32, 33 to 48, 49 to 64
+HELP	OCT+ BUTTON. THE NEXT 16 STEPS. PAGES: 1-16 17-32 33-48 49-64. HOLDING A STEP: ITS OCTAVE	octave up button. the next 16 steps. pages: 1 to 16, 17 to 32, 33 to 48, 49 to 64. holding a step: its octave
+HELP	PLAY / STOP BUTTON. START / STOP. HOME + PLAY: REDO	play or stop button. start or stop. home plus play: redo
+HELP	REC BUTTON. RECORD ON / OFF: BLACK KEYS, KNOB MOVES. HOME + REC: UNDO. SAVE + REC: CLEAR PART	record button. record on or off: black keys, knob moves. home plus record: undo. save plus record: clear part
+HELP	REC BUTTON. RECORD ON / OFF: THE KEYS PLAY AND WRITE NOTES. HOME + REC: UNDO. SAVE + REC: CLEAR PART	record button. record on or off: the keys play and write notes. home plus record: undo. save plus record: clear part
+HELP	SAVE BUTTON. TAP: SAVE EVERYTHING. + WHITE KEY: PASTE P1 THERE TO P1-16 (+ OCT+: P17-32). + REC: CLEAR 303A. + KNOB: FORGET ITS MOTION. STOPPED: SAVES BY ITSELF	save button. tap: save everything. plus white key: paste pattern 1 there to patterns 1 to 16 (plus octave up: patterns 17 to 32). plus record: clear three oh three A. plus knob: forget its motion. stopped: saves by itself
+HELP	SAVE BUTTON. TAP: SAVE EVERYTHING. + WHITE KEY: PASTE P1 THERE TO P1-16 (+ OCT+: P17-32). + REC: CLEAR 303B. + KNOB: FORGET ITS MOTION. STOPPED: SAVES BY ITSELF	save button. tap: save everything. plus white key: paste pattern 1 there to patterns 1 to 16 (plus octave up: patterns 17 to 32). plus record: clear three oh three B. plus knob: forget its motion. stopped: saves by itself
+HELP	SAVE BUTTON. TAP: SAVE EVERYTHING. + WHITE KEY: PASTE P1 THERE TO P1-16 (+ OCT+: P17-32). + REC: CLEAR 808. + KNOB: FORGET ITS MOTION. STOPPED: SAVES BY ITSELF	save button. tap: save everything. plus white key: paste pattern 1 there to patterns 1 to 16 (plus octave up: patterns 17 to 32). plus record: clear eight oh eight. plus knob: forget its motion. stopped: saves by itself
+HELP	SAVE BUTTON. TAP: SAVE EVERYTHING. + WHITE KEY: PASTE P1 THERE TO P1-16 (+ OCT+: P17-32). + REC: CLEAR 909. + KNOB: FORGET ITS MOTION. STOPPED: SAVES BY ITSELF	save button. tap: save everything. plus white key: paste pattern 1 there to patterns 1 to 16 (plus octave up: patterns 17 to 32). plus record: clear nine oh nine. plus knob: forget its motion. stopped: saves by itself
+HELP	SAVE BUTTON. TAP: SAVE EVERYTHING. + WHITE KEY: PASTE P1 THERE TO P1-16 (+ OCT+: P17-32). + REC: CLEAR BREAK. + KNOB: FORGET ITS MOTION. STOPPED: SAVES BY ITSELF	save button. tap: save everything. plus white key: paste pattern 1 there to patterns 1 to 16 (plus octave up: patterns 17 to 32). plus record: clear break. plus knob: forget its motion. stopped: saves by itself
+HELP	SEL BUTTON. THIS SCREEN AS A LIST. IN A LIST: RUN THE ACTION. IN A QUESTION: YES	S E L button. this screen as a list. in a list: run the action. in a question: yes
+HELP	SEQ BUTTON. THE PART'S STEPS: LENGTH, RATE. AGAIN: THE NEXT PAGE. HOLD A STEP + SELECT: ITS CHANCE	sequence button. the part's steps: length, rate. again: the next page. hold a step plus select: its chance
+KNOB	303A P1	three oh three A pattern 1
+KNOB	303B P1	three oh three B pattern 1
+KNOB	808 P1	eight oh eight pattern 1
+KNOB	909 P1	nine oh nine pattern 1
+KNOB	ACCENT 100	accent 100
+KNOB	ACCENT 127	accent 127
+KNOB	BAR 1	bar 1
+KNOB	BD  ATTACK 13	bass drum attack 13
+KNOB	BD  ATTACK 24	bass drum attack 24
+KNOB	BD  DECAY 80	bass drum decay 80
+KNOB	BD  DECAY 87	bass drum decay 87
+KNOB	BD  P.DPTH 0	bass drum pitch depth 0
+KNOB	BD  PITCH 45	bass drum pitch 45
+KNOB	BD  TONE 42	bass drum tone 42
+KNOB	BD  TUNE 34	bass drum tune 34
+KNOB	BD  TUNE 64	bass drum tune 64
+KNOB	BREAK P1	break pattern 1
+KNOB	COMP 75 %	compressor 75 percent
+KNOB	CUTOFF 48	cutoff 48
+KNOB	DECAY 64	decay 64
+KNOB	DECAY 73	decay 73
+KNOB	DLY 0	delay 0
+KNOB	DLY 0 %	delay 0 percent
+KNOB	DRIVE 41	drive 41
+KNOB	DRIVE 45	drive 45
+KNOB	ENVMOD 85	envelope mod 85
+KNOB	FEEDBACK 52	feedback 52
+KNOB	FILTER  OFF	filter off
+KNOB	FILTER OFF	filter off
+KNOB	FREE PLAY OFF	free play off
+KNOB	LEVEL -5 dB	level -5 decibels
+KNOB	LEVEL 127	level 127
+KNOB	LEVEL 61	level 61
+KNOB	LEVEL 64	level 64
+KNOB	P1  ACCENT 40 %	pattern 1 accent 40 percent
+KNOB	P1  ANCHOR 60 %	pattern 1 anchor 60 percent
+KNOB	P1  B CHANCE 0 %	pattern 1 B chance 0 percent
+KNOB	P1  CMPLX 25 %	pattern 1 complexity 25 percent
+KNOB	P1  DENS 70 %	pattern 1 density 70 percent
+KNOB	P1  DIRECTION FWD	pattern 1 direction forward
+KNOB	P1  FILL 50 %	pattern 1 fill 50 percent
+KNOB	P1  LENGTH 16 st	pattern 1 length 16 steps
+KNOB	P1  LOOP A 909 GR	pattern 1 loop A nine oh nine groove
+KNOB	P1  LOOP B 909 FL	pattern 1 loop B nine oh nine fill
+KNOB	P1  MUTATE OFF	pattern 1 mutate off
+KNOB	P1  OCTAVE 2	pattern 1 octave 2
+KNOB	P1  OCTAVE 3	pattern 1 octave 3
+KNOB	P1  OCTS 2	pattern 1 octaves 2
+KNOB	P1  RATE 1/16	pattern 1 rate sixteenth
+KNOB	P1  ROLL 20 %	pattern 1 roll 20 percent
+KNOB	P1  ROOT A	pattern 1 root A
+KNOB	P1  RTG2X 10 %	pattern 1 retrigger times 2 10 percent
+KNOB	P1  RTG3X 0 %	pattern 1 retrigger times 3 0 percent
+KNOB	P1  RTG4X 5 %	pattern 1 retrigger times 4 5 percent
+KNOB	P1  RTG8X 0 %	pattern 1 retrigger times 8 0 percent
+KNOB	P1  SCALE MIN	pattern 1 scale minor
+KNOB	P1  SLIDE 25 %	pattern 1 slide 25 percent
+KNOB	P1  SWING 50 %	pattern 1 swing 50 percent
+KNOB	P1  TRANSP 0 st	pattern 1 transpose 0 semitones
+KNOB	PAN C	pan center
+KNOB	PITCH 0	pitch 0
+KNOB	PUMP 4.0 dB	pump 4.0 decibels
+KNOB	REPEAT x1	repeat 1 time
+KNOB	RESO 100	resonance 100
+KNOB	REV 0	reverb 0
+KNOB	REV 0 %	reverb 0 percent
+KNOB	SLIDE 21	slide 21
+KNOB	STALLS OFF	stalls off
+KNOB	TAPE 49 %	tape 49 percent
+KNOB	TEMPO 125 bpm	tempo 125 B P M
+KNOB	TIME 1/8.	time dotted eighth
+KNOB	TONE 51	tone 51
+KNOB	TONE 57	tone 57
+KNOB	WAVE Saw	wave Saw
+ROW	303A LIST. ACCENT 100, 5 OF 12	three oh three A list. accent 100, 5 of 12
+ROW	303A LIST. CUTOFF 48, 1 OF 12	three oh three A list. cutoff 48, 1 of 12
+ROW	303A LIST. DECAY 64, 4 OF 12	three oh three A list. decay 64, 4 of 12
+ROW	303A LIST. DRIVE 45, 7 OF 12	three oh three A list. drive 45, 7 of 12
+ROW	303A LIST. ENVMOD 85, 3 OF 12	three oh three A list. envelope mod 85, 3 of 12
+ROW	303A LIST. MORE. ACCDEC 7, 12 OF 12	three oh three A list. more. accent decay 7, 12 of 12
+ROW	303A LIST. MORE. DRVTYP RAT, 11 OF 12	three oh three A list. more. drive type rat, 11 of 12
+ROW	303A LIST. MORE. TUNE 64, 9 OF 12	three oh three A list. more. tune 64, 9 of 12
+ROW	303A LIST. MORE. VOLUME 127, 10 OF 12	three oh three A list. more. volume 127, 10 of 12
+ROW	303A LIST. RESO 100, 2 OF 12	three oh three A list. resonance 100, 2 of 12
+ROW	303A LIST. SLIDE 21, 8 OF 12	three oh three A list. slide 21, 8 of 12
+ROW	303A LIST. WAVE Saw, 6 OF 12	three oh three A list. wave Saw, 6 of 12
+ROW	303A SEQ LIST. 303A: THE SOUND. FREE PLAY OFF, 5 OF 5	three oh three A sequence list. three oh three A: the sound. free play off, 5 of 5
+ROW	303A SEQ LIST. P1: THE PATTERN. DIRECTION FWD, 3 OF 5	three oh three A sequence list. pattern 1: the pattern. direction forward, 3 of 5
+ROW	303A SEQ LIST. P1: THE PATTERN. LENGTH 16 st, 1 OF 5	three oh three A sequence list. pattern 1: the pattern. length 16 steps, 1 of 5
+ROW	303A SEQ LIST. P1: THE PATTERN. RATE 1/16, 2 OF 5	three oh three A sequence list. pattern 1: the pattern. rate sixteenth, 2 of 5
+ROW	303A SEQ LIST. P1: THE PATTERN. TRANSP 0 st, 4 OF 5	three oh three A sequence list. pattern 1: the pattern. transpose 0 semitones, 4 of 5
+ROW	303B LIST. ACCENT 100, 5 OF 12	three oh three B list. accent 100, 5 of 12
+ROW	303B LIST. CUTOFF 48, 1 OF 12	three oh three B list. cutoff 48, 1 of 12
+ROW	303B LIST. DECAY 64, 4 OF 12	three oh three B list. decay 64, 4 of 12
+ROW	303B LIST. DRIVE 45, 7 OF 12	three oh three B list. drive 45, 7 of 12
+ROW	303B LIST. ENVMOD 85, 3 OF 12	three oh three B list. envelope mod 85, 3 of 12
+ROW	303B LIST. MORE. ACCDEC 7, 12 OF 12	three oh three B list. more. accent decay 7, 12 of 12
+ROW	303B LIST. MORE. DRVTYP RAT, 11 OF 12	three oh three B list. more. drive type rat, 11 of 12
+ROW	303B LIST. MORE. TUNE 64, 9 OF 12	three oh three B list. more. tune 64, 9 of 12
+ROW	303B LIST. MORE. VOLUME 127, 10 OF 12	three oh three B list. more. volume 127, 10 of 12
+ROW	303B LIST. RESO 100, 2 OF 12	three oh three B list. resonance 100, 2 of 12
+ROW	303B LIST. SLIDE 21, 8 OF 12	three oh three B list. slide 21, 8 of 12
+ROW	303B LIST. WAVE Saw, 6 OF 12	three oh three B list. wave Saw, 6 of 12
+ROW	303B SEQ LIST. 303B: THE SOUND. FREE PLAY OFF, 5 OF 5	three oh three B sequence list. three oh three B: the sound. free play off, 5 of 5
+ROW	303B SEQ LIST. P1: THE PATTERN. DIRECTION FWD, 3 OF 5	three oh three B sequence list. pattern 1: the pattern. direction forward, 3 of 5
+ROW	303B SEQ LIST. P1: THE PATTERN. LENGTH 16 st, 1 OF 5	three oh three B sequence list. pattern 1: the pattern. length 16 steps, 1 of 5
+ROW	303B SEQ LIST. P1: THE PATTERN. RATE 1/16, 2 OF 5	three oh three B sequence list. pattern 1: the pattern. rate sixteenth, 2 of 5
+ROW	303B SEQ LIST. P1: THE PATTERN. TRANSP 0 st, 4 OF 5	three oh three B sequence list. pattern 1: the pattern. transpose 0 semitones, 4 of 5
+ROW	808 LIST. 808: ALL TRACKS. ACCENT 127, 5 OF 7	eight oh eight list. eight oh eight: all tracks. accent 127, 5 of 7
+ROW	808 LIST. BD: THIS TRACK. ATTACK 24, 4 OF 7	eight oh eight list. bass drum: this track. attack 24, 4 of 7
+ROW	808 LIST. BD: THIS TRACK. DECAY 87, 2 OF 7	eight oh eight list. bass drum: this track. decay 87, 2 of 7
+ROW	808 LIST. BD: THIS TRACK. TONE 42, 1 OF 7	eight oh eight list. bass drum: this track. tone 42, 1 of 7
+ROW	808 LIST. BD: THIS TRACK. TUNE 64, 3 OF 7	eight oh eight list. bass drum: this track. tune 64, 3 of 7
+ROW	808 LIST. MORE. DIST DIODE, 7 OF 7	eight oh eight list. more. distortion diode, 7 of 7
+ROW	808 LIST. MORE. DRIVE 0, 6 OF 7	eight oh eight list. more. drive 0, 6 of 7
+ROW	808 SEQ LIST. LENGTH 16 st, 1 OF 2	eight oh eight sequence list. length 16 steps, 1 of 2
+ROW	808 SEQ LIST. RATE 1/16, 2 OF 2	eight oh eight sequence list. rate sixteenth, 2 of 2
+ROW	909 LIST. 909: ALL TRACKS. ACCENT 127, 6 OF 8	nine oh nine list. nine oh nine: all tracks. accent 127, 6 of 8
+ROW	909 LIST. BD: THIS TRACK. ATTACK 13, 2 OF 8	nine oh nine list. bass drum: this track. attack 13, 2 of 8
+ROW	909 LIST. BD: THIS TRACK. DECAY 80, 3 OF 8	nine oh nine list. bass drum: this track. decay 80, 3 of 8
+ROW	909 LIST. BD: THIS TRACK. P.DPTH 0, 4 OF 8	nine oh nine list. bass drum: this track. pitch depth 0, 4 of 8
+ROW	909 LIST. BD: THIS TRACK. PITCH 45, 5 OF 8	nine oh nine list. bass drum: this track. pitch 45, 5 of 8
+ROW	909 LIST. BD: THIS TRACK. TUNE 34, 1 OF 8	nine oh nine list. bass drum: this track. tune 34, 1 of 8
+ROW	909 LIST. MORE. DIST Diode, 8 OF 8	nine oh nine list. more. distortion Diode, 8 of 8
+ROW	909 LIST. MORE. DRIVE 30, 7 OF 8	nine oh nine list. more. drive 30, 7 of 8
+ROW	909 SEQ LIST. LENGTH 16 st, 1 OF 2	nine oh nine sequence list. length 16 steps, 1 of 2
+ROW	909 SEQ LIST. RATE 1/16, 2 OF 2	nine oh nine sequence list. rate sixteenth, 2 of 2
+ROW	BREAK LIST. B CHANCE 0 %, 3 OF 6	break list. B chance 0 percent, 3 of 6
+ROW	BREAK LIST. FILTER OFF, 5 OF 6	break list. filter off, 5 of 6
+ROW	BREAK LIST. LEVEL 127, 6 OF 6	break list. level 127, 6 of 6
+ROW	BREAK LIST. LOOP A 909 GR, 1 OF 6	break list. loop A nine oh nine groove, 1 of 6
+ROW	BREAK LIST. LOOP B 909 FL, 2 OF 6	break list. loop B nine oh nine fill, 2 of 6
+ROW	BREAK LIST. PITCH 0, 4 OF 6	break list. pitch 0, 4 of 6
+ROW	BREAK SEQ LIST. ANCHOR 60 %, 2 OF 11	break sequence list. anchor 60 percent, 2 of 11
+ROW	BREAK SEQ LIST. CMPLX 25 %, 1 OF 11	break sequence list. complexity 25 percent, 1 of 11
+ROW	BREAK SEQ LIST. FILL 50 %, 4 OF 11	break sequence list. fill 50 percent, 4 of 11
+ROW	BREAK SEQ LIST. MORE. A LEN 1, 10 OF 11	break sequence list. more. loop A length 1, 10 of 11
+ROW	BREAK SEQ LIST. MORE. B LEN 1, 11 OF 11	break sequence list. more. loop B length 1, 11 of 11
+ROW	BREAK SEQ LIST. MORE. PHRASE 4, 9 OF 11	break sequence list. more. phrase 4, 9 of 11
+ROW	BREAK SEQ LIST. ROLL 20 %, 3 OF 11	break sequence list. roll 20 percent, 3 of 11
+ROW	BREAK SEQ LIST. RTG2X 10 %, 5 OF 11	break sequence list. retrigger times 2 10 percent, 5 of 11
+ROW	BREAK SEQ LIST. RTG3X 0 %, 6 OF 11	break sequence list. retrigger times 3 0 percent, 6 of 11
+ROW	BREAK SEQ LIST. RTG4X 5 %, 7 OF 11	break sequence list. retrigger times 4 5 percent, 7 of 11
+ROW	BREAK SEQ LIST. RTG8X 0 %, 8 OF 11	break sequence list. retrigger times 8 0 percent, 8 of 11
+ROW	FX LIST. DECAY 73, 1 OF 11	effects list. decay 73, 1 of 11
+ROW	FX LIST. FEEDBACK 52, 4 OF 11	effects list. feedback 52, 4 of 11
+ROW	FX LIST. MORE. DLY LOW CUT 62, 9 OF 11	effects list. more. delay low cut 62, 9 of 11
+ROW	FX LIST. MORE. DLY RETURN 85, 10 OF 11	effects list. more. delay return 85, 10 of 11
+ROW	FX LIST. MORE. PING-PONG OFF, 11 OF 11	effects list. more. ping-pong off, 11 of 11
+ROW	FX LIST. MORE. REV LOW CUT 62, 7 OF 11	effects list. more. reverb low cut 62, 7 of 11
+ROW	FX LIST. MORE. REV RETURN 85, 8 OF 11	effects list. more. reverb return 85, 8 of 11
+ROW	FX LIST. TAPE 49 %, 6 OF 11	effects list. tape 49 percent, 6 of 11
+ROW	FX LIST. TIME 1/8., 3 OF 11	effects list. time dotted eighth, 3 of 11
+ROW	FX LIST. TONE 51, 5 OF 11	effects list. tone 51, 5 of 11
+ROW	FX LIST. TONE 57, 2 OF 11	effects list. tone 57, 2 of 11
+ROW	GLOBAL LIST. AUDIO. OUTPUT NORMAL, 8 OF 20	global list. audio. output normal, 8 of 20
+ROW	GLOBAL LIST. AUDIO. USB AUDIO FOLLOWS KNOB, 9 OF 20	global list. audio. U S B audio follows knob, 9 of 20
+ROW	GLOBAL LIST. KEYS AND SCREEN. KEY SOUND STOPPED, 11 OF 20	global list. keys and screen. key sound stopped, 11 of 20
+ROW	GLOBAL LIST. KEYS AND SCREEN. LIGHTS ON, 10 OF 20	global list. keys and screen. lights on, 10 of 20
+ROW	GLOBAL LIST. KEYS AND SCREEN. THEME AMBER, 12 OF 20	global list. keys and screen. theme amber, 12 of 20
+ROW	GLOBAL LIST. MIDI. 303A MIDI CH 2, 5 OF 20	global list. midi. three oh three A MIDI channel 2, 5 of 20
+ROW	GLOBAL LIST. MIDI. 303B MIDI CH 3, 6 OF 20	global list. midi. three oh three B MIDI channel 3, 6 of 20
+ROW	GLOBAL LIST. MIDI. 808 MIDI CH 11, 4 OF 20	global list. midi. eight oh eight MIDI channel 11, 4 of 20
+ROW	GLOBAL LIST. MIDI. 909 MIDI CH 10, 3 OF 20	global list. midi. nine oh nine MIDI channel 10, 3 of 20
+ROW	GLOBAL LIST. MIDI. BREAK MIDI CH 4, 7 OF 20	global list. midi. break MIDI channel 4, 7 of 20
+ROW	GLOBAL LIST. MIDI. CLOCK OUT ON, 1 OF 20	global list. midi. clock out on, 1 of 20
+ROW	GLOBAL LIST. MIDI. NOTES OUT OFF, 2 OF 20	global list. midi. notes out off, 2 of 20
+ROW	GLOBAL LIST. PROJECT. AUTOSAVE ON, 14 OF 20	global list. project. autosave on, 14 of 20
+ROW	GLOBAL LIST. PROJECT. CLEAR PATTERN, ACTION, 15 OF 20	global list. project. clear pattern, action, 15 of 20
+ROW	GLOBAL LIST. PROJECT. FACTORY RESET, ACTION, 16 OF 20	global list. project. factory reset, action, 16 of 20
+ROW	GLOBAL LIST. PROJECT. SAVE PROJECT, ACTION, 13 OF 20	global list. project. save project, action, 13 of 20
+ROW	GLOBAL LIST. SYSTEM. 2ND CORE ON, 18 OF 20	global list. system. second core on, 18 of 20
+ROW	GLOBAL LIST. SYSTEM. ABOUT X0X, ACTION, 19 OF 20	global list. system. about X zero X, action, 19 of 20
+ROW	GLOBAL LIST. SYSTEM. BATTERY FULL, 20 OF 20	global list. system. battery full, 20 of 20
+ROW	GLOBAL LIST. SYSTEM. PERFORMANCE, ACTION, 17 OF 20	global list. system. performance, action, 17 of 20
+ROW	HOME LIST. FILTER  OFF, 3 OF 4	home list. filter off, 3 of 4
+ROW	HOME LIST. PUMP 4.0 dB, 4 OF 4	home list. pump 4.0 decibels, 4 of 4
+ROW	HOME LIST. SWING 50 %, 2 OF 4	home list. swing 50 percent, 2 of 4
+ROW	HOME LIST. TEMPO 125 bpm, 1 OF 4	home list. tempo 125 B P M, 1 of 4
+ROW	MIX LIST. 808 BD DLY 0, 12 OF 28	mix list. eight oh eight bass drum delay 0, 12 of 28
+ROW	MIX LIST. 808 BD LEVEL 64, 9 OF 28	mix list. eight oh eight bass drum level 64, 9 of 28
+ROW	MIX LIST. 808 BD PAN C, 10 OF 28	mix list. eight oh eight bass drum pan center, 10 of 28
+ROW	MIX LIST. 808 BD REV 0, 11 OF 28	mix list. eight oh eight bass drum reverb 0, 11 of 28
+ROW	MIX LIST. 909 BD DLY 0, 8 OF 28	mix list. nine oh nine bass drum delay 0, 8 of 28
+ROW	MIX LIST. 909 BD LEVEL 61, 5 OF 28	mix list. nine oh nine bass drum level 61, 5 of 28
+ROW	MIX LIST. 909 BD PAN C, 6 OF 28	mix list. nine oh nine bass drum pan center, 6 of 28
+ROW	MIX LIST. 909 BD REV 0, 7 OF 28	mix list. nine oh nine bass drum reverb 0, 7 of 28
+ROW	MIX LIST. COMP 75 %, 14 OF 28	mix list. compressor 75 percent, 14 of 28
+ROW	MIX LIST. DLY 0 %, 4 OF 28	mix list. delay 0 percent, 4 of 28
+ROW	MIX LIST. DRIVE 41, 13 OF 28	mix list. drive 41, 13 of 28
+ROW	MIX LIST. FILTER  OFF, 16 OF 28	mix list. filter off, 16 of 28
+ROW	MIX LIST. LEVEL -5 dB, 1 OF 28	mix list. level -5 decibels, 1 of 28
+ROW	MIX LIST. MORE. ATTACK 10 ms, 19 OF 28	mix list. more. attack 10 milliseconds, 19 of 28
+ROW	MIX LIST. MORE. DIST Off, 26 OF 28	mix list. more. distortion Off, 26 of 28
+ROW	MIX LIST. MORE. GLUE 0, 27 OF 28	mix list. more. glue 0, 27 of 28
+ROW	MIX LIST. MORE. LIMIT ON, 25 OF 28	mix list. more. limit on, 25 of 28
+ROW	MIX LIST. MORE. MAKEUP 16.1 dB, 21 OF 28	mix list. more. makeup 16.1 decibels, 21 of 28
+ROW	MIX LIST. MORE. MIX 100 %, 22 OF 28	mix list. more. mix 100 percent, 22 of 28
+ROW	MIX LIST. MORE. PUMP BY 909, 23 OF 28	mix list. more. pump by nine oh nine, 23 of 28
+ROW	MIX LIST. MORE. RATIO 4:1, 18 OF 28	mix list. more. ratio 4 to 1, 18 of 28
+ROW	MIX LIST. MORE. RELEAS 99 ms, 20 OF 28	mix list. more. release 99 milliseconds, 20 of 28
+ROW	MIX LIST. MORE. RESO 20, 24 OF 28	mix list. more. resonance 20, 24 of 28
+ROW	MIX LIST. MORE. THRESH -24 dB, 17 OF 28	mix list. more. threshold -24 decibels, 17 of 28
+ROW	MIX LIST. MORE. VOLUME 44, 28 OF 28	mix list. more. volume 44, 28 of 28
+ROW	MIX LIST. PAN C, 2 OF 28	mix list. pan center, 2 of 28
+ROW	MIX LIST. PUMP 4.0 dB, 15 OF 28	mix list. pump 4.0 decibels, 15 of 28
+ROW	MIX LIST. REV 0 %, 3 OF 28	mix list. reverb 0 percent, 3 of 28
+ROW	PERF LIST. RUN PERF TEST, ACTION, 2 OF 2	performance list. run performance test, action, 2 of 2
+ROW	PERF LIST. STALLS OFF, 1 OF 2	performance list. stalls off, 1 of 2
+ROW	SONG LIST. 303A P1, 4 OF 11	song list. three oh three A pattern 1, 4 of 11
+ROW	SONG LIST. 303B P1, 5 OF 11	song list. three oh three B pattern 1, 5 of 11
+ROW	SONG LIST. 808 P1, 3 OF 11	song list. eight oh eight pattern 1, 3 of 11
+ROW	SONG LIST. 909 P1, 2 OF 11	song list. nine oh nine pattern 1, 2 of 11
+ROW	SONG LIST. BAR 1, 1 OF 11	song list. bar 1, 1 of 11
+ROW	SONG LIST. BREAK P1, 6 OF 11	song list. break pattern 1, 6 of 11
+ROW	SONG LIST. CLEAR SONG, ACTION, 11 OF 11	song list. clear song, action, 11 of 11
+ROW	SONG LIST. DELETE BAR, ACTION, 10 OF 11	song list. delete bar, action, 10 of 11
+ROW	SONG LIST. INSERT BAR, ACTION, 9 OF 11	song list. insert bar, action, 9 of 11
+ROW	SONG LIST. LENGTH 0 bar, 8 OF 11	song list. length 0 bar, 8 of 11
+ROW	SONG LIST. REPEAT x1, 7 OF 11	song list. repeat 1 time, 7 of 11
+ROW	TB-3PO LIST. ACCENT 40 %, 2 OF 8	T B three P O list. accent 40 percent, 2 of 8
+ROW	TB-3PO LIST. DENS 70 %, 1 OF 8	T B three P O list. density 70 percent, 1 of 8
+ROW	TB-3PO LIST. MUTATE OFF, 8 OF 8	T B three P O list. mutate off, 8 of 8
+ROW	TB-3PO LIST. OCTAVE 2, 7 OF 8	T B three P O list. octave 2, 7 of 8
+ROW	TB-3PO LIST. OCTAVE 3, 7 OF 8	T B three P O list. octave 3, 7 of 8
+ROW	TB-3PO LIST. OCTS 2, 4 OF 8	T B three P O list. octaves 2, 4 of 8
+ROW	TB-3PO LIST. ROOT A, 5 OF 8	T B three P O list. root A, 5 of 8
+ROW	TB-3PO LIST. SCALE MIN, 6 OF 8	T B three P O list. scale minor, 6 of 8
+ROW	TB-3PO LIST. SLIDE 25 %, 3 OF 8	T B three P O list. slide 25 percent, 3 of 8
+SCREEN	303A SEQ. KEYS: FREE PLAY OFF. STEPS 1-16 ON: NONE	three oh three A sequence. keys: free play off. steps 1 to 16 on: none
+SCREEN	303A SEQ. P1 SEQUENCE: LENGTH 16 st, RATE 1/16, DIRECTION FWD, TRANSP 0 st. STEPS 1-16 ON: NONE	three oh three A sequence. pattern 1 sequence: length 16 steps, rate sixteenth, direction forward, transpose 0 semitones. steps 1 to 16 on: none
+SCREEN	303A TB-3PO. P1 GENERATE: DENS 70 %, ACCENT 40 %, SLIDE 25 %, OCTS 2	three oh three A T B three P O. pattern 1 generate: density 70 percent, accent 40 percent, slide 25 percent, octaves 2
+SCREEN	303A TB-3PO. P1 SCALE: ROOT A, SCALE MIN, OCTAVE 2, MUTATE OFF	three oh three A T B three P O. pattern 1 scale: root A, scale minor, octave 2, mutate off
+SCREEN	303A TONE: CUTOFF 48, RESO 100, ENVMOD 85, DECAY 64. STEPS 1-16 ON: NONE	three oh three A tone: cutoff 48, resonance 100, envelope mod 85, decay 64. steps 1 to 16 on: none
+SCREEN	303A VOICE: ACCENT 100, WAVE Saw, DRIVE 45, SLIDE 21. STEPS 1-16 ON: NONE	three oh three A voice: accent 100, wave Saw, drive 45, slide 21. steps 1 to 16 on: none
+SCREEN	303B SEQ. KEYS: FREE PLAY OFF. STEPS 1-16 ON: NONE	three oh three B sequence. keys: free play off. steps 1 to 16 on: none
+SCREEN	303B SEQ. P1 SEQUENCE: LENGTH 16 st, RATE 1/16, DIRECTION FWD, TRANSP 0 st. STEPS 1-16 ON: NONE	three oh three B sequence. pattern 1 sequence: length 16 steps, rate sixteenth, direction forward, transpose 0 semitones. steps 1 to 16 on: none
+SCREEN	303B TB-3PO. P1 GENERATE: DENS 70 %, ACCENT 40 %, SLIDE 25 %, OCTS 2	three oh three B T B three P O. pattern 1 generate: density 70 percent, accent 40 percent, slide 25 percent, octaves 2
+SCREEN	303B TB-3PO. P1 SCALE: ROOT A, SCALE MIN, OCTAVE 3, MUTATE OFF	three oh three B T B three P O. pattern 1 scale: root A, scale minor, octave 3, mutate off
+SCREEN	303B TONE: CUTOFF 48, RESO 100, ENVMOD 85, DECAY 64. STEPS 1-16 ON: NONE	three oh three B tone: cutoff 48, resonance 100, envelope mod 85, decay 64. steps 1 to 16 on: none
+SCREEN	303B VOICE: ACCENT 100, WAVE Saw, DRIVE 45, SLIDE 21. STEPS 1-16 ON: NONE	three oh three B voice: accent 100, wave Saw, drive 45, slide 21. steps 1 to 16 on: none
+SCREEN	808 KIT: ACCENT 127. STEPS 1-16 ON: NONE	eight oh eight kit: accent 127. steps 1 to 16 on: none
+SCREEN	808 SEQ. P1 SEQUENCE: LENGTH 16 st, RATE 1/16. STEPS 1-16 ON: NONE	eight oh eight sequence. pattern 1 sequence: length 16 steps, rate sixteenth. steps 1 to 16 on: none
+SCREEN	808. BD: TONE 42, DECAY 87, TUNE 64, ATTACK 24. STEPS 1-16 ON: NONE	eight oh eight. bass drum: tone 42, decay 87, tune 64, attack 24. steps 1 to 16 on: none
+SCREEN	909 KIT: ACCENT 127. STEPS 1-16 ON: NONE	nine oh nine kit: accent 127. steps 1 to 16 on: none
+SCREEN	909 SEQ. P1 SEQUENCE: LENGTH 16 st, RATE 1/16. STEPS 1-16 ON: NONE	nine oh nine sequence. pattern 1 sequence: length 16 steps, rate sixteenth. steps 1 to 16 on: none
+SCREEN	909. BD (1/2): TUNE 34, ATTACK 13, DECAY 80, P.DPTH 0. STEPS 1-16 ON: NONE	nine oh nine. bass drum, page 1 of 2: tune 34, attack 13, decay 80, pitch depth 0. steps 1 to 16 on: none
+SCREEN	909. BD (2/2): PITCH 45. STEPS 1-16 ON: NONE	nine oh nine. bass drum, page 2 of 2: pitch 45. steps 1 to 16 on: none
+SCREEN	BREAK SEQ. P1 GROOVE: CMPLX 25 %, ANCHOR 60 %, ROLL 20 %, FILL 50 %	break sequence. pattern 1 groove: complexity 25 percent, anchor 60 percent, roll 20 percent, fill 50 percent
+SCREEN	BREAK SEQ. P1 RETRIG: RTG2X 10 %, RTG3X 0 %, RTG4X 5 %, RTG8X 0 %	break sequence. pattern 1 retrigger: retrigger times 2 10 percent, retrigger times 3 0 percent, retrigger times 4 5 percent, retrigger times 8 0 percent
+SCREEN	BREAK. P1 LOOPS: LOOP A 909 GR, LOOP B 909 FL, B CHANCE 0 %, PITCH 0	break. pattern 1 loops: loop A nine oh nine groove, loop B nine oh nine fill, B chance 0 percent, pitch 0
+SCREEN	BREAK. P1 SOUND: FILTER OFF, LEVEL 127	break. pattern 1 sound: filter off, level 127
+SCREEN	FX. DELAY: TIME 1/8., FEEDBACK 52, TONE 51, TAPE 49 %	effects. delay: time dotted eighth, feedback 52, tone 51, tape 49 percent
+SCREEN	FX. REVERB: DECAY 73, TONE 57	effects. reverb: decay 73, tone 57
+SCREEN	HOME. PERFORM: TEMPO 125 bpm, SWING 50 %, FILTER  OFF, PUMP 4.0 dB	home. perform: tempo 125 B P M, swing 50 percent, filter off, pump 4.0 decibels
+SCREEN	MIX. 808 MIX: BD: LEVEL 64, PAN C, REV 0, DLY 0	mix. eight oh eight mix: bass drum: level 64, pan center, reverb 0, delay 0
+SCREEN	MIX. 909 MIX: BD: LEVEL 61, PAN C, REV 0, DLY 0	mix. nine oh nine mix: bass drum: level 61, pan center, reverb 0, delay 0
+SCREEN	MIX. MASTER: DRIVE 41, COMP 75 %, PUMP 4.0 dB, FILTER  OFF	mix. master: drive 41, compressor 75 percent, pump 4.0 decibels, filter off
+SCREEN	MIX. PARTS: 909: LEVEL -5 dB, PAN C, REV 0 %, DLY 0 %	mix. parts: nine oh nine: level -5 decibels, pan center, reverb 0 percent, delay 0 percent
+SCREEN	PERF: STALLS OFF	performance: stalls off
+SCREEN	SONG. BAR (1/2): BAR 1, 909 P1, 808 P1, 303A P1	song. bar, page 1 of 2: bar 1, nine oh nine pattern 1, eight oh eight pattern 1, three oh three A pattern 1
+SCREEN	SONG. BAR (2/2): BAR 1, 303B P1, BREAK P1, REPEAT x1	song. bar, page 2 of 2: bar 1, three oh three B pattern 1, break pattern 1, repeat 1 time
+VALUE	2ND CORE OFF 	second core off
+VALUE	2ND CORE ON 	second core on
+VALUE	A LEN 1 	loop A length 1
+VALUE	A LEN 1/2 	loop A length half
+VALUE	A LEN 1/4 	loop A length quarter
+VALUE	A LEN 2 	loop A length 2
+VALUE	A LEN 4 	loop A length 4
+VALUE	A LEN 8 	loop A length 8
+VALUE	AUTOSAVE OFF 	autosave off
+VALUE	AUTOSAVE ON 	autosave on
+VALUE	B LEN 1 	loop B length 1
+VALUE	B LEN 1/2 	loop B length half
+VALUE	B LEN 1/4 	loop B length quarter
+VALUE	B LEN 2 	loop B length 2
+VALUE	B LEN 4 	loop B length 4
+VALUE	B LEN 8 	loop B length 8
+VALUE	BATTERY ... 	battery checking
+VALUE	BATTERY 1/3 	battery one third
+VALUE	BATTERY 2/3 	battery two thirds
+VALUE	BATTERY EMPTY 	battery empty
+VALUE	BATTERY FULL 	battery full
+VALUE	BATTERY USB POWER 	battery U S B power
+VALUE	CLOCK OUT OFF 	clock out off
+VALUE	CLOCK OUT ON 	clock out on
+VALUE	DIRECTION FWD 	direction forward
+VALUE	DIRECTION PING 	direction ping-pong
+VALUE	DIRECTION REV 	direction reverse
+VALUE	DIRECTION RND 	direction random
+VALUE	DIST BFZ 	distortion fuzz
+VALUE	DIST Clip 	distortion Clip
+VALUE	DIST CLIP 	distortion clip
+VALUE	DIST Crush 	distortion Crush
+VALUE	DIST CRUSH 	distortion crush
+VALUE	DIST Diode 	distortion Diode
+VALUE	DIST DIODE 	distortion diode
+VALUE	DIST Fold 	distortion Fold
+VALUE	DIST FOLD 	distortion fold
+VALUE	DIST Off 	distortion Off
+VALUE	DIST PDIST 	distortion crunch
+VALUE	DIST SAT 	distortion saturation
+VALUE	DRVTYP Off 	drive type Off
+VALUE	DRVTYP RAT 	drive type rat
+VALUE	DRVTYP Soft 	drive type Soft
+VALUE	FREE PLAY OFF 	free play off
+VALUE	FREE PLAY ON 	free play on
+VALUE	KEY SOUND ALWAYS 	key sound always
+VALUE	KEY SOUND STOPPED 	key sound stopped
+VALUE	LIGHTS KEYS 	lights keys
+VALUE	LIGHTS OFF 	lights off
+VALUE	LIGHTS ON 	lights on
+VALUE	LIMIT OFF 	limit off
+VALUE	LIMIT ON 	limit on
+VALUE	LOOP A 909 FL 	loop A nine oh nine fill
+VALUE	LOOP A 909 GR 	loop A nine oh nine groove
+VALUE	LOOP B 909 FL 	loop B nine oh nine fill
+VALUE	LOOP B 909 GR 	loop B nine oh nine groove
+VALUE	NOTES OUT OFF 	notes out off
+VALUE	NOTES OUT ON 	notes out on
+VALUE	OUTPUT LOUD 	output loud
+VALUE	OUTPUT NORMAL 	output normal
+VALUE	PHRASE 16 	phrase 16
+VALUE	PHRASE 2 	phrase 2
+VALUE	PHRASE 4 	phrase 4
+VALUE	PHRASE 8 	phrase 8
+VALUE	PHRASE Off 	phrase Off
+VALUE	PING-PONG OFF 	ping-pong off
+VALUE	PING-PONG ON 	ping-pong on
+VALUE	PITCH -1 	pitch -1
+VALUE	PITCH -10 	pitch -10
+VALUE	PITCH -11 	pitch -11
+VALUE	PITCH -12 	pitch -12
+VALUE	PITCH -2 	pitch -2
+VALUE	PITCH -3 	pitch -3
+VALUE	PITCH -4 	pitch -4
+VALUE	PITCH -5 	pitch -5
+VALUE	PITCH -6 	pitch -6
+VALUE	PITCH -7 	pitch -7
+VALUE	PITCH -8 	pitch -8
+VALUE	PITCH -9 	pitch -9
+VALUE	PITCH +1 	pitch +1
+VALUE	PITCH +10 	pitch +10
+VALUE	PITCH +11 	pitch +11
+VALUE	PITCH +12 	pitch +12
+VALUE	PITCH +2 	pitch +2
+VALUE	PITCH +3 	pitch +3
+VALUE	PITCH +4 	pitch +4
+VALUE	PITCH +5 	pitch +5
+VALUE	PITCH +6 	pitch +6
+VALUE	PITCH +7 	pitch +7
+VALUE	PITCH +8 	pitch +8
+VALUE	PITCH +9 	pitch +9
+VALUE	PITCH 0 	pitch 0
+VALUE	PUMP BY 808 	pump by eight oh eight
+VALUE	PUMP BY 909 	pump by nine oh nine
+VALUE	PUMP BY BOTH 	pump by both
+VALUE	RATE 1/16 	rate sixteenth
+VALUE	RATE 1/16T 	rate sixteenth triplet
+VALUE	RATE 1/32 	rate thirty-second
+VALUE	RATE 1/8T 	rate eighth triplet
+VALUE	RATIO 1:1 	ratio 1 to 1
+VALUE	RATIO 1.5:1 	ratio 1.5 to 1
+VALUE	RATIO 12:1 	ratio 12 to 1
+VALUE	RATIO 2:1 	ratio 2 to 1
+VALUE	RATIO 20:1 	ratio 20 to 1
+VALUE	RATIO 3:1 	ratio 3 to 1
+VALUE	RATIO 4:1 	ratio 4 to 1
+VALUE	RATIO 6:1 	ratio 6 to 1
+VALUE	RATIO 8:1 	ratio 8 to 1
+VALUE	RATIO INF 	ratio infinity
+VALUE	ROOT A 	root A
+VALUE	ROOT A# 	root A sharp
+VALUE	ROOT B 	root B
+VALUE	ROOT C 	root C
+VALUE	ROOT C# 	root C sharp
+VALUE	ROOT D 	root D
+VALUE	ROOT D# 	root D sharp
+VALUE	ROOT E 	root E
+VALUE	ROOT F 	root F
+VALUE	ROOT F# 	root F sharp
+VALUE	ROOT G 	root G
+VALUE	ROOT G# 	root G sharp
+VALUE	SCALE DOR 	scale dorian
+VALUE	SCALE HARM 	scale harmonic minor
+VALUE	SCALE MAJ 	scale major
+VALUE	SCALE MIN 	scale minor
+VALUE	SCALE MPEN 	scale minor pentatonic
+VALUE	SCALE PHRY 	scale phrygian
+VALUE	STALLS OFF 	stalls off
+VALUE	STALLS ON 	stalls on
+VALUE	THEME AMBER 	theme amber
+VALUE	THEME CYAN 	theme cyan
+VALUE	THEME GREEN 	theme green
+VALUE	THEME MONO 	theme mono
+VALUE	THEME RED 	theme red
+VALUE	TIME 1/16 	time sixteenth
+VALUE	TIME 1/16. 	time sixteenth.
+VALUE	TIME 1/16T 	time sixteenth triplet
+VALUE	TIME 1/2 	time half
+VALUE	TIME 1/2. 	time half.
+VALUE	TIME 1/2T 	time half triplet
+VALUE	TIME 1/32 	time thirty-second
+VALUE	TIME 1/4 	time quarter
+VALUE	TIME 1/4. 	time quarter.
+VALUE	TIME 1/4T 	time quarter triplet
+VALUE	TIME 1/8 	time eighth
+VALUE	TIME 1/8. 	time eighth.
+VALUE	TIME 1/8T 	time eighth triplet
+VALUE	USB AUDIO FOLLOWS KNOB 	U S B audio follows knob
+VALUE	USB AUDIO FULL 	U S B audio full
+VALUE	WAVE Saw 	wave Saw
+VALUE	WAVE Sqr 	wave square
