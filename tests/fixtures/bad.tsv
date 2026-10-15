@@ -1,8 +1,9 @@
-SCREEN		909. 909 KIT: ACCENT 127
-KNOB		bd tune 3/4
-ROW		global list. clock out on
-HELP		the effects: reverb, delay,. tape
-MSG		new line 3fa2
-MSG		cmplx 25 percent , rtg2x
-MSG		WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word 
-MSG		PLAY + STOP
+SCREEN	909. 909 KIT: ACCENT 127
+KNOB	bd tune 3/4 | x
+ROW	global list. clock out on
+HELP	the effects: reverb, delay,, tape
+MSG	new line 3fa2
+MSG	cmplx 25 percent , rtg2x
+MSG	WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word 
+MSG	Play * Stop
+MSG	SAVED THE PROJECT

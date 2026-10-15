@@ -3,10 +3,11 @@
 All the FM-1 firmwares share Felucca's platform layer (`usb.c`, `ota.c`, `main_*.c`), so the hookup is the
 same in each. X0X is the worked example: `fm1-x0x/firmware/src/app/ui.c`, the "screen reader" section.
 
-## 1. The shared file
+## 1. The shared files
 
-Copy `fm1-reader/firmware/announce.c` into `firmware/src/announce.c`. Don't edit the copy: change the original
-in fm1-reader and copy it again (`fm1-reader/tools/sync_announce.sh ../fm1-<name>`).
+Run `fm1-reader/tools/sync_announce.sh ../fm1-<name>`. It copies `announce.c` into `firmware/src/` and
+`gen_words.py` into `tools/`. Don't edit the copies: change the originals in fm1-reader, run its tests, and
+sync again (`--check` reports a copy that differs).
 
 ## 2. The platform: send, receive, tick
 
@@ -14,6 +15,7 @@ In the firmware's unity file (X0X: `firmware/src/x0x.c`), after `usb.c` and `ota
 
 ```c
 #define ANN_NAME "NAME " NAME_VERSION          /* the HELLO answer: the firmware and its version */
+#include "ann_words.h"                         /* the link to its words file (gen_words.py, section 3) */
 #include "announce.c"
 static int ann_wire_send(const uint8_t *p, uint32_t n)   /* never waits: no room (nobody reading), not sent */
 {
@@ -44,23 +46,36 @@ keep 64 and `#define ANN_MAX 160u` before the include.
 **The tick.** At the end of the UI frame (X0X: `ui_frame()`), call the app's `speak()` and then
 `ann_tick(now_ms)`.
 
-## 3. The words table
+## 3. The words file (hosted, not in flash)
 
-The screen's abbreviations, said in full, in flash (about 20 B an entry):
+`firmware/words.tsv` lists the screen's text and what to say, one pair a line, separated by a tab:
 
-```c
-static const ann_word_t NAME_WORDS[] = {
-    {"BD", "bass drum"}, {"P#", "pattern #"}, {"P#-#", "patterns # to #"},
-    {"LENGTH # st", "length # steps"}, {"NEW LINE *", "new line"},
-};
-/* in ui_init(): */ ann_words(NAME_WORDS, sizeof NAME_WORDS / sizeof NAME_WORDS[0]);
+```
+# url: https://<you>.github.io/fm1-<name>/words/
+BD	bass drum
+P#-#	patterns # to #
+P#	pattern #
+LENGTH # st	length # steps
+NEW LINE *	new line
 ```
 
-- **Wildcards.** `#` takes a number and puts it in the spoken text. `*` takes a word and drops it.
-- **Matching.** Entries match whole words, ignoring capitals; the longest match wins. The app's entries come
-  before the common ones (`ANN_COMMON` in announce.c), so a firmware can give "REV" its own meaning.
-- **What's already handled.** announce.c says fractions, triplets, dotted values, ratios, ranges, sharps,
-  "x2", "%", "+", " / " and "(1/2)" page marks, and lowercases words in capitals. Don't add entries for those.
+- **Wildcards.** `#` takes a number and puts it in what's said. `*` takes a word and leaves it out.
+- **Matching.** Entries match whole words, ignoring capitals; the longest match wins. Your entries come before
+  the common ones in `gen_words.py` (FX, dB, MIDI CH, …), so a firmware can give "REV" its own meaning.
+- **What's already handled.** The reader says fractions, triplets, dotted values, ratios, ranges, sharps,
+  "x2", "%", "+", " / " and "(1/2)" page marks, and turns words in capitals into ordinary words. Don't add
+  entries for those.
+
+The build runs `python3 tools/gen_words.py firmware/words.tsv web/words build/gen/ann_words.h`, in the device
+build, the host build and the emulator build. It writes:
+- `web/words/<id>.json`: the words file, named by a fingerprint of its content. **Commit it.** A changed
+  table makes a new file; keep the old ones, since devices in the wild point at them.
+- `build/gen/ann_words.h`: `ANN_WORDS_URL`, the link the device sends.
+
+**Publishing.** The site build copies `web/words/` to `words/` on the firmware's site (X0X:
+`tools/make_pages.py`). GitHub Pages allows a page on another site to fetch the file.
+
+**Flash cost.** The link only, about 60 B. The words cost the device nothing.
 
 ## 4. speak(): what changed on the screen
 
@@ -79,20 +94,21 @@ and say what changed. X0X's `speak()` does it in about 100 lines:
 - **Steps or keys** the user toggles: send them directly from the key handler, e.g. "step 5 on".
 
 Build the text into a buffer in the pool (X0X: `sp_buf`, 241 B), not on the 8 KiB system stack.
-`announce.c` itself needs about 300 B of RAM and about 1 KB of stack in the main loop (never in the
-audio interrupt).
+`announce.c` itself needs about 1.5 KB of flash, about 300 B of RAM, and about 500 B of stack in the main loop
+(never in the audio interrupt).
 
 ## 5. The simulator: a dump and a log
 
 Two things for the audit.
 
 **`speakdump`.** A host-only command that walks every screen, page, knob, list row, enum value and help
-card, and prints `KIND<TAB>screen text<TAB>words` for each. Get the words with
-`ann_spoken(w, sizeof w, text)`. X0X: `speak_dump()` in ui.c, under `#ifdef X0X_HOST`.
+card, and prints `KIND<TAB>text` for each: the text as the device would send it. X0X: `speak_dump()` in
+ui.c, under `#ifdef X0X_HOST`.
 
-**`<NAME>_SAID_LOG=FILE`.** The simulator listens from boot and appends every SAY to FILE as
-`MSG<TAB><TAB>words` (`WARN` when the KEEP flag is set). Running the scenario tests then collects every
-action message.
+**`<NAME>_SAID_LOG=FILE`.** The simulator listens from boot and appends every SAY to FILE as `MSG<TAB>text`
+(`WARN` when the KEEP flag is set). Running the scenario tests then collects every action message.
+
+The audit puts both into words with the words file, exactly as the page will, then checks them.
 
 Also add script commands `listen`, `where` and `said TEXT` (X0X: `host/x0x_host.c`), and a scenario that
 checks the main paths. Any `expect`-style failure fails the tests.

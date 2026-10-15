@@ -108,13 +108,38 @@
 </main>
 <script type="module">
 import { findReaders } from './reader.js';
+import { spoken, wordsOf } from './words.js';
 import { createTTS } from './tts.js';
 
 const $ = (id) => document.getElementById(id);
 const prefs = (() => { try { return JSON.parse(localStorage.getItem('fm1-reader') || '{}'); } catch (e) { return {}; } })();
 const save = () => { try { localStorage.setItem('fm1-reader', JSON.stringify(prefs)); } catch (e) { /* private window */ } };
 
-let tts = null, reader = null, last = '', lastKeep = false;
+let tts = null, reader = null, last = '', lastScreen = '', lastKeep = false;
+let words = [], wordsNote = '';           // (the last one found's; each reader keeps its own: r.list)
+
+// a firmware's words file: fetched from the link its HELLO gives, kept (a link is never changed: the same link,
+// the same words), so the page works offline once it has been used with that firmware
+async function loadWords(url) {
+    words = [];
+    if (!url) { wordsNote = 'it has no words file: the screen\'s text is read as it is'; return words; }
+    const key = 'fm1-words ' + url;
+    try {
+        const kept = localStorage.getItem(key);
+        if (kept) { words = wordsOf(JSON.parse(kept)); wordsNote = ''; return words; }
+    } catch (e) { /* not kept, or private */ }
+    try {
+        const r = await fetch(url, { mode: 'cors' });
+        if (!r.ok) throw new Error(r.status);
+        const json = await r.json();
+        words = wordsOf(json);
+        wordsNote = '';
+        try { localStorage.setItem(key, JSON.stringify(json)); } catch (e) { /* full, or private */ }
+    } catch (e) {
+        wordsNote = 'its words file could not be fetched (offline, or not published yet): the screen\'s text is read as it is. Drop the file on this page to use it';
+    }
+    return words;
+}
 const ttsReady = createTTS().then((t) => (tts = t)).catch((e) => { console.error(e); });
 
 // settings
@@ -140,15 +165,17 @@ showSettings();
 function setStatus(s, text) { $('status').dataset.s = s; $('status').textContent = text; }
 function showFound() {
     const names = reader ? reader.readers.map((f) => f.name) : [];
-    if (names.length) setStatus('listening', `Listening to ${names.join(' and ')}.`);
+    if (names.length) setStatus(wordsNote ? 'lost' : 'listening', `Listening to ${names.join(' and ')}.` + (wordsNote ? ` Note: ${wordsNote}.` : ''));
     else setStatus('lost', 'No FM-1 is answering. Plug it in with a USB cable; its firmware needs screen reader support.');
     $('where').disabled = $('again').disabled = !names.length;
 }
 
-// what the FM-1 said: its own words, shown and spoken as they come
+// what the FM-1 said: its screen's text in its own words, shown and spoken as they come
 let liveFlip = false, keeping = 0;
-function say(text, now, keep) {
+function say(screen, now, keep, list = words) {
+    const text = spoken(screen, list);
     last = text;
+    lastScreen = screen;
     lastKeep = keep;
     $('now').textContent = text;
     const li = document.createElement('li');
@@ -177,9 +204,17 @@ async function connect() {
             const midi = await navigator.requestMIDIAccess({ sysex: true });
             setStatus('wait', 'Looking for an FM-1…');
             reader = findReaders(midi, {
-                onFound: showFound,
+                onFound: (name, f) => {
+                    // what it says waits for its words (the first thing it says is the whole screen)
+                    f.ready = loadWords(f.words).then((l) => { f.list = l; showFound(); });
+                },
                 onLost: showFound,
-                onSay: (name, text, now, keep) => say(text, now, keep),
+                onSay: (name, text, now, keep) => {
+                    const f = reader.readers.find((r) => r.name === name);
+                    if (f && f.list) say(text, now, keep, f.list);
+                    else if (f) f.ready = f.ready.then(() => say(text, now, keep, f.list));
+                    else say(text, now, keep);
+                },
             });
             setTimeout(showFound, 7000);
             $('connect').textContent = 'Look again';
@@ -195,12 +230,25 @@ async function connect() {
 
 $('connect').onclick = connect;
 $('where').onclick = () => reader && reader.where();
-$('again').onclick = () => last && say(last, true, lastKeep);
+$('again').onclick = () => lastScreen && say(lastScreen, true, lastKeep);
+// a words file dropped on the page (a firmware being made, not published yet)
+addEventListener('dragover', (e) => e.preventDefault());
+addEventListener('drop', async (e) => {
+    e.preventDefault();
+    const file = e.dataTransfer.files[0];
+    if (!file) return;
+    try {
+        words = wordsOf(JSON.parse(await file.text()));
+        wordsNote = '';
+        if (reader) for (const f of reader.readers) f.list = words;
+        setStatus('listening', `Using the words in ${file.name}.`);
+    } catch (err) { setStatus('error', `${file.name} is not a words file.`); }
+});
 addEventListener('keydown', (e) => {
     if (!$('keys').checked || e.target.closest('input, select, textarea') || e.metaKey || e.ctrlKey || e.altKey) return;
     const k = e.key.toLowerCase();
     if (k === 'w' && reader) reader.where();
-    else if (k === 'a' && last) say(last, true, lastKeep);
+    else if (k === 'a' && lastScreen) say(lastScreen, true, lastKeep);
     else if (k === 's' && tts) tts.stop();
     else if (k === 'v') {
         const v = mode() === 'voice' ? 'sr' : 'voice';

@@ -7,7 +7,7 @@ marked (audit). The rest need a person's judgement: read the dump.
 
 1. **Words, not abbreviations.** Every word should be a real word. "CMPLX", "RTG2X", "ACCDEC" and "P.DPTH"
    become "complexity", "retrigger times 2", "accent decay" and "pitch depth". The screen keeps its short
-   labels; the firmware's words table says them in full. (audit: not-a-word)
+   labels; the firmware's words file (words.tsv) says them in full. (audit: not-a-word)
 2. **One word, one meaning.** The table is used everywhere on the screen, so check each entry where it
    appears. "CH" was "closed hat" next to the drum names, and "channel" after "MIDI": the longer entry
    ("MIDI CH #") must say the second one. "st" meant steps after a length and semitones after a transpose.
@@ -20,9 +20,9 @@ marked (audit). The rest need a person's judgement: read the dump.
    letters-and-digits)
 6. **No noise.** Leave out what is meant for the eye or for debugging: hex seeds, addresses, bars of dots.
    (audit: noise)
-7. **Not in capitals.** Some voices spell a word in capitals letter by letter. announce.c lowercases a word
-   in capitals unless the table says otherwise. Write a string in letters, e.g. "L F O", to have it spelled.
-   (audit: capitals)
+7. **Not in capitals.** Some voices spell a word in capitals letter by letter. The reader makes a word in
+   capitals an ordinary word unless the words file says otherwise. To have something spelled, write it as
+   letters, e.g. "L F O".
 
 ## Sentences
 

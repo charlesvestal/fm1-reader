@@ -1,17 +1,19 @@
 #!/bin/sh
 # SPDX-License-Identifier: GPL-3.0-only
-# Copy announce.c into a firmware, or check that its copy is this one.
-#   tools/sync_announce.sh ../fm1-x0x            copy to ../fm1-x0x/firmware/src/announce.c
-#   tools/sync_announce.sh --check ../fm1-x0x    exit 1 if it differs
+# Copy announce.c and gen_words.py into a firmware, or check that its copies are these.
+#   tools/sync_announce.sh ../fm1-x0x            copy to firmware/src/announce.c and tools/gen_words.py
+#   tools/sync_announce.sh --check ../fm1-x0x    exit 1 if one differs
 set -e
-SRC="$(cd "$(dirname "$0")/.." && pwd)/firmware/announce.c"
+R="$(cd "$(dirname "$0")/.." && pwd)"
 check=0
 [ "$1" = "--check" ] && { check=1; shift; }
 for fw in "$@"; do
-    dst="$fw/firmware/src/announce.c"
-    if [ $check = 1 ]; then
-        cmp -s "$SRC" "$dst" && echo "same: $dst" || { echo "DIFFERS: $dst"; exit 1; }
-    else
-        cp "$SRC" "$dst" && echo "copied: $dst"
-    fi
+    for pair in "firmware/announce.c firmware/src/announce.c" "tools/gen_words.py tools/gen_words.py"; do
+        set -- $pair
+        if [ $check = 1 ]; then
+            cmp -s "$R/$1" "$fw/$2" && echo "same: $fw/$2" || { echo "DIFFERS: $fw/$2"; exit 1; }
+        else
+            cp "$R/$1" "$fw/$2" && echo "copied: $fw/$2"
+        fi
+    done
 done

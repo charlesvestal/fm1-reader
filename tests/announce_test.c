@@ -1,12 +1,13 @@
 /* SPDX-License-Identifier: GPL-3.0-only */
 /* announce.c on the host: the protocol (silent until a HELLO, the answer, a reader gone after 5 s, BYE, WHERE),
- * the SAY frames (flags, cut at a word, 7-bit), ann_later's settling, and the words (the tables, numbers, signs).
+ * the SAY frames (flags, cut at a word, 7-bit), and ann_later's settling. (The words: tests/words_test.mjs.)
  *   cc -std=c99 -Wall -Wextra -Werror -o build/announce_test tests/announce_test.c && build/announce_test */
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
 
 #define ANN_NAME "TEST 1.0"
+#define ANN_WORDS_URL "https://example.org/words/0123456789.json"
 #include "../firmware/announce.c"
 
 static uint8_t sent[4096];
@@ -50,22 +51,8 @@ static const char *last_said(int *flags)
     t[k] = 0;
     return t;
 }
-static void words(const char *screen, const char *want)
-{
-    char o[ANN_MAX + 1];
-    ann_spoken(o, sizeof o, screen);
-    CHECK(!strcmp(o, want), "\"%s\" -> \"%s\", want \"%s\"", screen, o, want);
-}
-
 int main(void)
 {
-    static const ann_word_t APP[] = {
-        {"BD", "bass drum"}, {"909", "nine oh nine"}, {"909 GR", "nine oh nine groove"}, {"P#", "pattern #"},
-        {"P#-#", "patterns # to #"}, {"STEP #: #:#", "step #: loop # of every #"}, {"NEW LINE *", "new line"},
-        {"LENGTH # st", "length # steps"}, {"REV", "reverse"},
-    };
-    ann_words(APP, sizeof APP / sizeof APP[0]);
-
     /* silent until a reader says HELLO */
     ann_say("SAVED", 0, ANN_NOW);
     ann_later("TUNE 5", ANN_NOW, 100, 0);
@@ -77,8 +64,9 @@ int main(void)
     /* HELLO: the answer (version, name), and the whole screen asked for once */
     in(ANN_HELLO, 1000);
     CHECK(ann_on(), "not on after HELLO");
-    CHECK(frames == 1 && sent[4] == ANN_HELLO && sent[5] == ANN_VER && !memcmp(sent + 6, "TEST 1.0", 8) &&
-              sent[14] == 0xF7, "HELLO answer wrong");
+    CHECK(frames == 1 && sent[4] == ANN_HELLO && sent[5] == ANN_VER && !memcmp(sent + 6, "TEST 1.0", 9) &&
+              !memcmp(sent + 15, ANN_WORDS_URL, sizeof ANN_WORDS_URL - 1) && sent[15 + sizeof ANN_WORDS_URL - 1] == 0xF7,
+          "HELLO answer wrong: want name, 0, link");
     CHECK(ann_where() && !ann_where(), "WHERE not asked once on a new reader");
     in(ANN_HELLO, 2000);
     CHECK(!ann_where(), "a second HELLO asked for the screen again");
@@ -90,7 +78,7 @@ int main(void)
         int fl;
         const char *t = last_said(&fl);
         CHECK(fl == 3, "flags %d", fl);
-        CHECK(!strcmp(t, "memory full: not saved"), "said \"%s\"", t);
+        CHECK(!strcmp(t, "MEMORY FULL: NOT SAVED"), "said \"%s\" (the screen's text, as it is)", t);
     }
 
     /* ann_later: the newest, once it settles (or every 4 x quiet while it keeps changing) */
@@ -100,7 +88,7 @@ int main(void)
     ann_tick(3100);
     CHECK(frames == 0, "said before it settled");
     ann_tick(3150);
-    CHECK(frames == 1 && !strcmp(last_said(0), "tune 2"), "the settled one not said");
+    CHECK(frames == 1 && !strcmp(last_said(0), "TUNE 2"), "the settled one not said");
     clear();
     for (uint32_t t = 4000; t < 4500; t += 50) {
         ann_later(t & 64 ? "TUNE 3" : "TUNE 4", ANN_NOW, 100, t);
@@ -147,40 +135,6 @@ int main(void)
         uint8_t other[4] = {0x7D, 0x46, 0x4C, 1};    /* someone else's SysEx */
         CHECK(!ann_frame(other, 4, 9400), "took another protocol's frame");
     }
-
-    /* the words */
-    words("BD TUNE 37", "bass drum tune 37");
-    words("909 GR", "nine oh nine groove");                 /* the longest match */
-    words("909 KIT", "nine oh nine kit");
-    words("P3", "pattern 3");
-    words("COPY TO P17-32", "copy to patterns 17 to 32");
-    words("STEP 5: 1:4", "step 5: loop 1 of every 4");
-    words("NEW LINE 3FA2", "new line");
-    words("LENGTH 16 st", "length 16 steps");
-    words("DIRECTION REV", "direction reverse");            /* the app's table before the common one */
-    words("RATE 1/16T", "rate sixteenth triplet");
-    words("TIME 1/8., FEEDBACK 52", "time dotted eighth, feedback 52");
-    words("RATE 1/16. STEPS 1-16 ON: NONE", "rate sixteenth. steps 1 to 16 on: none");
-    words("RATIO 4:1", "ratio 4 to 1");
-    words("ROOT C#", "root C sharp");
-    words("STEP 5 ON C#3", "step 5 on C sharp 3");
-    words("REPEAT x1", "repeat 1 time");
-    words("REPEAT x4", "repeat 4 times");
-    words("SWING 50 %", "swing 50 percent");
-    words("LEVEL -5 dB", "level -5 decibels");
-    words("BD (1/2): TUNE 34", "bass drum, page 1 of 2: tune 34");
-    words("PLAY / STOP", "play or stop");
-    words("HOME + REC: UNDO", "home plus record: undo");
-    words("(+ OCT+: P17-32)", "(plus octave up: patterns 17 to 32)");
-    words("HOLD A STEP", "hold a step");
-    words("LOOP A", "loop A");
-    words("THE PART'S SOUND", "the part's sound");
-    words("THE EFFECTS: REVERB, DELAY,. TAPE", "the effects: reverb, delay. tape");
-    words("CLEAR THIS?. SEL: YES", "clear this? sel: yes");
-    words("WAVE Saw", "wave Saw");
-    words("BREAK MIDI CH 4", "break MIDI channel 4");
-    words("A  B", "A B");
-    words("BDX", "bdx");                                    /* not "bass drum" inside a longer word */
 
     printf(fails ? "announce: %d FAILED\n" : "announce: all passed\n", fails);
     return fails != 0;

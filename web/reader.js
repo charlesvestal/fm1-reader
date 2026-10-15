@@ -1,8 +1,9 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // The FM-1 screen reader's link (PROTOCOL.md): Web MIDI to any firmware with announce.c. The firmware is in
-// charge of the words; this page knows nothing about any of them. Every MIDI port is asked (HELLO); the ones
-// that answer are FM-1s that announce.
-//   const r = findReaders(midi, { onFound(name, port), onSay(name, text, now, keep), onLost(name) });
+// charge of the words: it sends its screen's text and, with its HELLO, the link to its words file; this page
+// knows nothing about any firmware. Every MIDI port is asked (HELLO); the ones that answer are FM-1s.
+//   const r = findReaders(midi, { onFound(name, reader), onSay(name, text, now, keep), onLost(name) });
+//   reader.words: the link to its words file ('' none)
 //   r.where(name);  r.rescan();  r.close();
 
 const H = [0x7d, 0x53, 0x52];
@@ -13,6 +14,7 @@ export function findReaders(midi, { onFound, onSay, onLost } = {}) {
     const found = new Map();                         // input name -> { name, out, heard }
     const frame = (cmd, ...a) => [0xf0, ...H, cmd, ...a, 0xf7];
     const text = (d) => String.fromCharCode(...d.slice(6, d.length - 1).filter((b) => b && b < 128));
+    const parts = (d) => String.fromCharCode(...d.slice(6, d.length - 1).filter((b) => b < 128)).split('\0');
     const send = (out, cmd, ...a) => { try { out.send(frame(cmd, ...a)); } catch (e) { /* unplugged */ } };
     const outFor = (inp) => [...midi.outputs.values()].find((o) => o.name === inp.name) || null;
 
@@ -23,7 +25,8 @@ export function findReaders(midi, { onFound, onSay, onLost } = {}) {
         if (d[4] === HELLO) {
             const out = outFor(inp);
             if (!f) {
-                f = { name: text(d), out, inp };
+                const [name, words = ''] = parts(d);
+                f = { name, words: /^https:\/\/[^\s"']+\.json$/.test(words) ? words : '', out, inp };
                 found.set(inp.id, f);
                 onFound && onFound(f.name, f);
             }

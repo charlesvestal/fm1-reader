@@ -1,15 +1,19 @@
 #!/usr/bin/env node
 // SPDX-License-Identifier: GPL-3.0-only
-// Audit what a firmware says to a screen reader (announce.c), against the rules in skill/.../RULES.md.
-//   node tools/audit.mjs DUMP.tsv [--allow words.txt] [--dict /usr/share/dict/words] [--max 240] [--all]
-// DUMP.tsv: one message a line, KIND <tab> the screen's text <tab> the words sent (the firmware simulator's
-// "speakdump"; KIND: SCREEN KNOB ROW VALUE HELP MSG WARN ASK STEP ...). Exit 1 when there are errors.
+// Audit what a firmware says to a screen reader (announce.c), against the rules in skill/.../RULES.md: its
+// messages put in words exactly as the reader page does (web/words.js, with the firmware's words file).
+//   node tools/audit.mjs DUMP.tsv --words web/words/<id>.json [--allow words.txt] [--dict FILE] [--max 240] [--all]
+// DUMP.tsv: one message a line, KIND <tab> the screen's text (the firmware simulator's "speakdump", and its
+// said log; KIND: SCREEN KNOB ROW VALUE HELP MSG WARN ASK STEP ...). Exit 1 when there are errors.
 import fs from 'fs';
+import { spoken, wordsOf } from '../web/words.js';
 
 const args = process.argv.slice(2);
 const opt = (k, d) => { const i = args.indexOf(k); return i >= 0 ? args[i + 1] : d; };
 const file = args.find((a, i) => !a.startsWith('--') && !(i && args[i - 1].startsWith('--') && args[i - 1] !== '--all'));
-if (!file) { console.error('usage: audit.mjs DUMP.tsv [--allow words.txt] [--dict FILE] [--max 240] [--all]'); process.exit(2); }
+if (!file) { console.error('usage: audit.mjs DUMP.tsv --words FILE.json [--allow words.txt] [--dict FILE] [--max 240] [--all]'); process.exit(2); }
+const wordsFile = opt('--words');
+const list = wordsFile ? wordsOf(JSON.parse(fs.readFileSync(wordsFile, 'utf8'))) : [];
 const MAX = +opt('--max', 240);
 const all = args.includes('--all');
 
@@ -40,8 +44,8 @@ const findings = [];                                                  // {level,
 const notWords = new Map();                                           // word -> {count, example}
 const add = (level, rule, kind, said, note) => findings.push({ level, rule, kind, said, note });
 
-for (const [kind, screen, said0] of lines) {
-    const said = said0 ?? screen;
+for (const [kind, screen] of lines) {
+    const said = spoken(screen || '', list);
     if (!said) continue;
     // 1. words, not abbreviations: every word should be a word (single letters are letters: "L F O", "loop A")
     for (const m of said.matchAll(/[A-Za-z][A-Za-z'\-]*/g)) {
@@ -109,5 +113,5 @@ for (const [k, fs_] of byRule) {
     if (!all && fs_.length > 12) console.log(`  … and ${fs_.length - 12} more (--all)`);
 }
 const errors = findings.filter((f) => f.level === 'error').length, warns = findings.length - errors;
-console.log(`\n${lines.length} messages: ${errors} errors, ${warns} warnings${dictFile ? '' : ' (no dictionary: words not checked; --dict FILE)'}`);
+console.log(`\n${lines.length} messages: ${errors} errors, ${warns} warnings${dictFile ? '' : ' (no dictionary: words not checked; --dict FILE)'}${wordsFile ? '' : ' (no --words: the screen\'s text with the common rules only)'}`);
 process.exit(errors ? 1 : 0);
