@@ -60,7 +60,16 @@ export function findReaders(midi, { onFound, onSay, onLost } = {}) {
             if (now - f.heard > GONE_MS) { found.delete(id); asked.delete(f.out && f.out.id); onLost && onLost(f.name); }
     }
     tick();
-    const timer = setInterval(tick, 2000);
+    // the HELLO's beat comes from a worker: Chrome slows a background tab's own timers to once a minute, and the
+    // device, not hearing from its reader for 5 s, would stop and then, at the next HELLO, say the whole screen
+    // again. A worker's timer keeps time while you play the FM-1 with this tab behind.
+    let timer, beat = null;
+    try {
+        beat = new Worker(URL.createObjectURL(new Blob(['setInterval(() => postMessage(0), 2000);'], { type: 'text/javascript' })));
+        beat.onmessage = tick;
+    } catch (e) {
+        timer = setInterval(tick, 2000);                // (no workers: the tab's own timer)
+    }
     const changed = (e) => { if (e.port.state === 'disconnected') asked.delete(e.port.id); };   // plugged in again: asked again
     midi.addEventListener('statechange', changed);
     const bye = () => { for (const f of found.values()) f.out && send(f.out, BYE); };
@@ -71,6 +80,7 @@ export function findReaders(midi, { onFound, onSay, onLost } = {}) {
         where(name) { for (const f of found.values()) if (!name || f.name === name) f.out && send(f.out, WHERE); },
         close() {
             clearInterval(timer);
+            if (beat) beat.terminate();
             bye();
             removeEventListener('pagehide', bye);
             midi.removeEventListener('statechange', changed);

@@ -20,7 +20,7 @@ Every byte between F0 and F7 is 7-bit. A device that doesn't support the protoco
 
 | cmd | args | meaning |
 |---|---|---|
-| 1 HELLO | version (1) | Start or keep listening. Send it again every 2 s; a device that hears nothing for 5 s stops. |
+| 1 HELLO | version (1) | Start or keep listening. Send it again every 2 s; a device that hears nothing for 5 s stops. In a browser, time it from a Worker: a background tab's own timers run once a minute. |
 | 2 BYE | — | Stop listening, e.g. when the page closes. |
 | 3 WHERE | — | Say everything on the screen now. |
 
