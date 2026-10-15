@@ -11,7 +11,11 @@ marked (audit). The rest need a person's judgement: read the dump.
 2. **One word, one meaning.** The table is used everywhere on the screen, so check each entry where it
    appears. "CH" was "closed hat" next to the drum names, and "channel" after "MIDI": the longer entry
    ("MIDI CH #") must say the second one. "st" meant steps after a length and semitones after a transpose.
-3. **Numbers the way people say them.** 1/16 is "sixteenth", 1/8T "eighth triplet", 1/8. "dotted
+3. **Notes and chords.** The reader treats a capital A before a word as "a", except before MINOR, MAJOR,
+   SHARP, FLAT and mode names, where it stays the note. Check the dump for any other "A <word>" that is
+   a note, and add a words entry for it. Chord symbols ("F#m7b5") can't be put in words by the words file
+   alone: build the spoken name in the firmware ("F sharp minor seven flat five").
+3b. **Numbers the way people say them.** 1/16 is "sixteenth", 1/8T "eighth triplet", 1/8. "dotted
    eighth", 4:1 "4 to 1", 1-16 "1 to 16", x2 "2 times", C#3 "C sharp 3", % "percent", dB "decibels". The
    common table and the built-in rules do these.
 4. **No symbols a voice reads out loud or skips.** / | > < * _ = # [ ] { } ~ ^ @ & $ and a lone +. Say

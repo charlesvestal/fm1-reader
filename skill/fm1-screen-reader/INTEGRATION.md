@@ -26,7 +26,8 @@ static int ann_wire_send(const uint8_t *p, uint32_t n)   /* never waits: no room
 ```
 
 **The send queue.** In `usb.c`, the SysEx queue must hold a whole SAY, `(ANN_MAX + 9) / 3` packets. With
-the default `ANN_MAX` of 240, set `#define SXQ 128u` (it was 64; this costs 256 B of RAM). If RAM is tight,
+the default `ANN_MAX` of 240, set `#define SXQ 128u` (it was 64; this costs 256 B of RAM). The update loader
+includes `usb.c` too, so its RAM grows by the same amount; its build check must still pass. If RAM is tight,
 keep 64 and `#define ANN_MAX 160u` before the include.
 
 **Receiving.** In the main loop, before the editor and the updater read SysEx frames:
@@ -95,7 +96,8 @@ and say what changed. X0X's `speak()` does it in about 100 lines:
 
 Build the text into a buffer in the pool (X0X: `sp_buf`, 241 B), not on the 8 KiB system stack.
 `announce.c` itself needs about 1.5 KB of flash, about 300 B of RAM, and about 500 B of stack in the main loop
-(never in the audio interrupt).
+(never in the audio interrupt). The app's `speak()` and its text come on top: 1 KB for a small UI (Mocky),
+about 5 KB for a big one (CTL-1, with chord and controller names).
 
 ## 5. The simulator: a dump and a log
 
