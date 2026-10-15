@@ -24,6 +24,8 @@ github.com/charlesvestal/fm1-reader):
 - `PROTOCOL.md`: the SysEx.
 - `skill/fm1-screen-reader/INTEGRATION.md`: how to wire it in, step by step, with code.
 - `skill/fm1-screen-reader/RULES.md`: the rules for the words. Read it before writing any.
+- `skill/fm1-screen-reader/PAGES.md`: the firmware's web pages (installer, manual, emulator, …), and the
+  checker for them, `tools/a11y/check.mjs`.
 - `tools/audit.mjs`: checks a firmware's words against the rules.
 - `tools/fm1_reader.py`: a reader in the terminal, for checking the device.
 - `tests/announce_test.c`: announce.c's own test.
@@ -81,6 +83,8 @@ Use a task list. Don't skip the audit or the device check.
     - Mention the screen reader in the release notes and the manual, with a link to
       https://charlesvestal.github.io/fm1-reader/.
     - Add the firmware to the list in fm1-reader's README.
+11. **Its pages:** the site passes `tools/a11y/check.mjs` and the checks by hand in PAGES.md. The
+    emulator speaks its screen too, through the reader exports.
 
 ## The rules in short (RULES.md has them all)
 

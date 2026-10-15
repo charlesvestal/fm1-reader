@@ -1,0 +1,7 @@
+{
+  "name": "fm1-a11y",
+  "private": true,
+  "type": "module",
+  "description": "Checks a built FM-1 site's pages with axe-core in a headless Chrome (fm1-reader/skill/fm1-screen-reader/PAGES.md)",
+  "dependencies": { "axe-core": "4.14.0", "playwright": "1.64.1" }
+}
