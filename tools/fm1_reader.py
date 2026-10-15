@@ -22,9 +22,6 @@ while not a.seconds or time.time() - t0 < a.seconds:
     if time.time() - last > 2:
         out.send(mido.Message("sysex", data=H + [1, 1]))
         last = time.time()
-        if a.where:
-            out.send(mido.Message("sysex", data=H + [3]))
-            a.where = False
     for m in inp.iter_pending():
         d = list(m.data) if m.type == "sysex" else []
         if d[:3] == H and len(d) > 4:
@@ -32,6 +29,10 @@ while not a.seconds or time.time() - t0 < a.seconds:
             if d[3] == 1:
                 name, _, words = text.partition("\0")
                 print(f"hello: {name}  (words: {words or 'none'})", flush=True)
+                if a.where:                      # once it has answered (it takes one SysEx at a time)
+                    time.sleep(0.05)
+                    out.send(mido.Message("sysex", data=H + [3]))
+                    a.where = False
             else:
                 print("said%s: %s" % ("!" if d[4] & 1 else "", text), flush=True)
     time.sleep(0.01)

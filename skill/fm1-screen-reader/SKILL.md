@@ -46,7 +46,7 @@ Use a task list. Don't skip the audit or the device check.
    - the help text, page titles and part names
 4. **`speak()`** (section 4): everything on WHERE, and the context, readouts, lists, transport and
    steps as they change.
-5. **The simulator** (section 5): `speakdump`, `*_SAID_LOG`, and the `listen` / `where` / `said` commands,
+5. **The simulator** (section 5). If it runs only a fixed session, give it a script mode first. Then add `speakdump`, `*_SAID_LOG`, and the `listen` / `where` / `said` commands,
    plus a scenario under `tests/scenarios/` that walks the main paths with `said` checks.
 6. **Audit** until it reports no errors, and no warnings you haven't decided to keep:
    ```sh
@@ -57,8 +57,9 @@ Use a task list. Don't skip the audit or the device check.
    ```
    - **Fix the cause, in the firmware.** Use words.tsv, how `speak()` builds a sentence, or the string
      itself; never the page.
-   - **Read the dump yourself too.** The audit can't judge meaning: a table entry can be right in one
-     place and wrong in another ("CH": closed hat or channel?).
+   - **Read the dump yourself too** (`audit.mjs … --spoken` prints it as it will be heard). The audit can't
+     judge meaning: a table entry can be right in one place and wrong in another ("CH": closed hat or
+     channel?).
    - **Words the firmware really means** (a product name, a word the dictionary lacks) go in an allow list
      passed with `--allow`, kept in the firmware's repo.
 7. **Budget:** the build's RAM and flash checks pass, and the room left is noted. announce.c costs about

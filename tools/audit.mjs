@@ -3,6 +3,7 @@
 // Audit what a firmware says to a screen reader (announce.c), against the rules in skill/.../RULES.md: its
 // messages put in words exactly as the reader page does (web/words.js, with the firmware's words file).
 //   node tools/audit.mjs DUMP.tsv --words web/words/<id>.json [--allow words.txt] [--dict FILE] [--max 240] [--all]
+//                                 [--spoken]   (--spoken: print every message as it will be heard, and stop)
 // DUMP.tsv: one message a line, KIND <tab> the screen's text (the firmware simulator's "speakdump", and its
 // said log; KIND: SCREEN KNOB ROW VALUE HELP MSG WARN ASK STEP ...). Exit 1 when there are errors.
 import fs from 'fs';
@@ -10,7 +11,7 @@ import { spoken, wordsOf } from '../web/words.js';
 
 const args = process.argv.slice(2);
 const opt = (k, d) => { const i = args.indexOf(k); return i >= 0 ? args[i + 1] : d; };
-const file = args.find((a, i) => !a.startsWith('--') && !(i && args[i - 1].startsWith('--') && args[i - 1] !== '--all'));
+const file = args.find((a, i) => !a.startsWith('--') && !(i && args[i - 1].startsWith('--') && !['--all', '--spoken'].includes(args[i - 1])));
 if (!file) { console.error('usage: audit.mjs DUMP.tsv --words FILE.json [--allow words.txt] [--dict FILE] [--max 240] [--all]'); process.exit(2); }
 const wordsFile = opt('--words');
 const list = wordsFile ? wordsOf(JSON.parse(fs.readFileSync(wordsFile, 'utf8'))) : [];
@@ -27,7 +28,8 @@ const MUSIC = `arp arpeggiator reverb delay lfo cutoff resonance envelope sustai
   lydian mixolydian locrian aeolian ionian staccato legato sequencer euclidean pan mute unmute unmuted muted
   autosave autosaved bpm usb sixteenth thirty-second triplet dotted tempo swing groove fill loop loops crunch fuzz
   saturation distortion compressor makeup limiter glue drive overdrive preset presets algorithm velocity aftertouch
-  polyphony mono stereo wav sysex firmware fm-1 ok undo redo octave octaves cancelled cancelling colour`.split(/\s+/);
+  polyphony mono stereo wav sysex firmware fm-1 ok undo redo octave octaves cancelled cancelling colour
+  slideshow kilobytes megabytes gallery`.split(/\s+/);
 MUSIC.forEach((w) => words.add(w));
 const allowFile = opt('--allow');
 if (allowFile) for (const w of fs.readFileSync(allowFile, 'utf8').split('\n')) if (w.trim() && !w.startsWith('#')) words.add(w.trim().toLowerCase());
@@ -40,6 +42,10 @@ const isWord = (w) => {
 };
 
 const lines = fs.readFileSync(file, 'utf8').split('\n').filter(Boolean).map((l) => l.split('\t'));
+if (args.includes('--spoken')) {                                      // the dump as it will be heard, to read
+    for (const [kind, screen] of lines) console.log(`${kind}\t${spoken(screen || '', list)}`);
+    process.exit(0);
+}
 const findings = [];                                                  // {level, rule, kind, said, note}
 const notWords = new Map();                                           // word -> {count, example}
 const add = (level, rule, kind, said, note) => findings.push({ level, rule, kind, said, note });

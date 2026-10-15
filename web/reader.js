@@ -29,6 +29,10 @@ export function findReaders(midi, { onFound, onSay, onLost } = {}) {
                 f = { name, words: /^https:\/\/[^\s"']+\.json$/.test(words) ? words : '', out, inp };
                 found.set(inp.id, f);
                 onFound && onFound(f.name, f);
+                // the whole screen, asked for once it has answered: it may already be talking to another reader
+                // (then a HELLO is not news to it), and it takes one SysEx at a time (one sent right behind the
+                // HELLO can be lost)
+                if (out) setTimeout(() => send(out, WHERE), 50);
             }
             f.heard = performance.now();
         } else if (d[4] === SAY && f && onSay) {
