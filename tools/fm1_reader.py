@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-License-Identifier: GPL-3.0-only
+# SPDX-License-Identifier: MIT
 """Print what an FM-1 firmware announces for a screen reader (firmware/announce.c; PROTOCOL.md): the screen's
 text as it is sent (the page puts it in words with the firmware's words file).
    fm1_reader.py [--where] [--seconds N]     needs mido + python-rtmidi"""

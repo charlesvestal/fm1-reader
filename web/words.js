@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: GPL-3.0-only
+// SPDX-License-Identifier: MIT
 // The screen's text in words: the firmware's own list first (its words file, fetched from the link it gives:
 // PROTOCOL.md), then the common way to say numbers and signs. One copy, used by the page, the audit and the
 // tests.

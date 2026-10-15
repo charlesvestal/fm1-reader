@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: GPL-3.0-only
+// SPDX-License-Identifier: MIT
 // The screen reader's voice: espeak-ng in a worker (tts_worker.js), played through Web Audio.
 //   const tts = await createTTS();            // baseUrl: the folder holding tts_worker.js and espeak/
 //   button.onclick = () => tts.unlock();      // browsers start audio only from a user gesture

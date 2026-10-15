@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// SPDX-License-Identifier: GPL-3.0-only
+// SPDX-License-Identifier: MIT
 // Audit what a firmware says to a screen reader (announce.c), against the rules in skill/.../RULES.md: its
 // messages put in words exactly as the reader page does (web/words.js, with the firmware's words file).
 //   node tools/audit.mjs DUMP.tsv --words web/words/<id>.json [--allow words.txt] [--dict FILE] [--max 240] [--all]

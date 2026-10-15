@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: GPL-3.0-only
+// SPDX-License-Identifier: MIT
 // web/words.js: the screen's text in words (a firmware's list, then the common rules).   node tests/words_test.mjs
 import { spoken, wordsOf } from '../web/words.js';
 

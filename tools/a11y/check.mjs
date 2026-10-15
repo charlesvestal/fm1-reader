@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// SPDX-License-Identifier: GPL-3.0-only
+// SPDX-License-Identifier: MIT
 // Every page of a built site, checked with axe-core (WCAG 2.2 A and AA, and best practice) in a headless Chrome,
 // at desktop and phone widths, in light and dark. What it can't judge is in PAGES.md: read and listen too.
 //   cd tools/a11y && npm install && npx playwright install chromium     (once)

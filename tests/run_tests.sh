@@ -1,5 +1,5 @@
 #!/bin/sh
-# SPDX-License-Identifier: GPL-3.0-only
+# SPDX-License-Identifier: MIT
 # announce.c's test, and the audit on its fixtures: a clean dump passes, a bad one is caught.
 set -e
 cd "$(dirname "$0")/.."

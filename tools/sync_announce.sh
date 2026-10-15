@@ -1,5 +1,5 @@
 #!/bin/sh
-# SPDX-License-Identifier: GPL-3.0-only
+# SPDX-License-Identifier: MIT
 # Copy announce.c and gen_words.py into a firmware, or check that its copies are these.
 #   tools/sync_announce.sh ../fm1-x0x            copy to firmware/src/announce.c and tools/gen_words.py
 #   tools/sync_announce.sh --check ../fm1-x0x    exit 1 if one differs

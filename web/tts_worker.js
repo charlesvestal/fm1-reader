@@ -1,4 +1,6 @@
-// SPDX-License-Identifier: GPL-3.0-only
+// SPDX-License-Identifier: GPL-3.0-or-later
+// GPL, not MIT like the rest of fm1-reader: it runs eSpeak NG (GPL-3.0-or-later) in its own scope. tts.js only
+// talks to it by messages.
 // The screen reader's speech worker (a classic worker): espeak-ng (espeak/espeak.js) instantiated
 // once, then each message {id, text, rate, pitch} is answered with {id, pcm: Int16Array, sampleRate}.
 'use strict';

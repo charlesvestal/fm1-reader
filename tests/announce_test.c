@@ -1,4 +1,4 @@
-/* SPDX-License-Identifier: GPL-3.0-only */
+/* SPDX-License-Identifier: MIT */
 /* announce.c on the host: the protocol (silent until a HELLO, the answer, a reader gone after 5 s, BYE, WHERE),
  * the SAY frames (flags, cut at a word, 7-bit), and ann_later's settling. (The words: tests/words_test.mjs.)
  *   cc -std=c99 -Wall -Wextra -Werror -o build/announce_test tests/announce_test.c && build/announce_test */

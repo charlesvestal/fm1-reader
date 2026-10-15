@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: GPL-3.0-only
+// SPDX-License-Identifier: MIT
 // The FM-1 screen reader's link (PROTOCOL.md): Web MIDI to any firmware with announce.c. The firmware is in
 // charge of the words: it sends its screen's text and, with its HELLO, the link to its words file; this page
 // knows nothing about any firmware. Every MIDI port is asked (HELLO); the ones that answer are FM-1s.

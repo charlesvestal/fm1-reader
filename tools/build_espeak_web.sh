@@ -1,5 +1,5 @@
 #!/bin/sh
-# SPDX-License-Identifier: GPL-3.0-only
+# SPDX-License-Identifier: MIT
 # The screen reader's speech: espeak-ng, English only, compiled to WebAssembly.
 #   [ESPEAK_SRC=path] tools/build_espeak_web.sh [path]  ->  web/espeak/{espeak.js, espeak.wasm}
 # Without a path it clones the pinned commit into build/espeak-src. A native espeak-ng (no

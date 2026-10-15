@@ -1,5 +1,5 @@
 #!/bin/sh
-# SPDX-License-Identifier: GPL-3.0-only
+# SPDX-License-Identifier: MIT
 # Publish the reader page (web/) to this repo's gh-pages branch: https://charlesvestal.github.io/fm1-reader/
 set -e
 cd "$(dirname "$0")/.."
