@@ -72,6 +72,15 @@ Use a task list. Don't skip the audit or the device check.
    - Before publishing, drop the JSON file onto the page instead.
 9. **Tests:** the firmware's test script passes, and `cc ... ../fm1-reader/tests/announce_test.c` too, if
    announce.c changed.
+10. **Releasing** (with the firmware's usual release steps):
+    - `sync_announce.sh --check .` passes. If it fails, sync, rebuild, and audit again: fm1-reader may have
+      changed the common words, which makes a new words file.
+    - The words file the release build links to (`build/gen/ann_words.h`) is committed in `web/words/`.
+    - Publish the site with the release, so the link works the day the release goes out. Check it:
+      `curl -sI <the link>` gives 200.
+    - Mention the screen reader in the release notes and the manual, with a link to
+      https://charlesvestal.github.io/fm1-reader/.
+    - Add the firmware to the list in fm1-reader's README.
 
 ## The rules in short (RULES.md has them all)
 
