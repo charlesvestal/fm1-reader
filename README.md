@@ -28,9 +28,25 @@ Each firmware is in charge of its own words, and they cost it no flash.
 | `web/` | The page. espeak-ng (English) runs in it as WebAssembly (`tools/build_espeak_web.sh`). |
 | `tests/run_tests.sh` | announce.c's test, and the audit on good and bad fixtures. |
 
-To use the skill with Claude Code, link it into your skills:
-`ln -s "$PWD/skill/fm1-screen-reader" ~/.claude/skills/`. Then ask Claude to "add screen reader support"
-to a firmware.
+### Adding support with a coding agent
+
+Paste this into your agent (Claude Code, Codex, Cursor, …) in your firmware's repo:
+
+> Clone https://github.com/charlesvestal/fm1-reader into `../fm1-reader` (next to this firmware), unless
+> it's already there. Read `../fm1-reader/skill/fm1-screen-reader/SKILL.md` and follow it to add screen
+> reader support to this firmware. Read `INTEGRATION.md` and `RULES.md` in the same folder first. Put the
+> words file's link on this firmware's own GitHub Pages site. Work through every step: the audit must report
+> no errors, the build's RAM and flash checks must pass, and the tests must pass. Stop before flashing a
+> device or publishing anything, and tell me what's left for me to check.
+
+With Claude Code you can install the skill once instead, then just ask to "add screen reader support":
+
+```sh
+git clone https://github.com/charlesvestal/fm1-reader ~/fm1-reader
+ln -s ~/fm1-reader/skill/fm1-screen-reader ~/.claude/skills/
+```
+
+The skill expects fm1-reader at `../fm1-reader`, next to the firmware; the agent clones it there if not.
 
 It costs a firmware about 1.5 KB of flash and about 300 B of RAM, plus the USB send queue (see
 INTEGRATION.md). X0X's support in all comes to 2.3 KB of flash.
