@@ -2,7 +2,9 @@
 # SPDX-License-Identifier: MIT
 """Print what an FM-1 firmware announces for a screen reader (firmware/announce.c; PROTOCOL.md): the screen's
 text as it is sent (the page puts it in words with the firmware's words file).
-   fm1_reader.py [--where] [--seconds N]     needs mido + python-rtmidi"""
+   fm1_reader.py [--where] [--seconds N] [--port NAME]     needs mido + python-rtmidi
+The FM-1 is found as the page finds it: every port is asked (HELLO) and the one that answers is it, whatever its
+name ("FM-1", "X0X", "Felucca", ...). --port picks one by (part of) its name instead."""
 import argparse, sys, time
 import mido
 
@@ -10,12 +12,50 @@ H = [0x7D, 0x53, 0x52]
 ap = argparse.ArgumentParser()
 ap.add_argument("--where", action="store_true", help="ask for the whole screen once")
 ap.add_argument("--seconds", type=float, default=0, help="stop after N seconds (0: run until ^C)")
+ap.add_argument("--port", help="the FM-1's MIDI port (part of its name), instead of asking every port")
 a = ap.parse_args()
-name = next((n for n in mido.get_output_names() if "FM-1" in n or "X0X" in n), None)
-if not name:
-    sys.exit("no FM-1 port")
-inp = mido.open_input(next(n for n in mido.get_input_names() if n.split(":")[0] == name.split(":")[0]))
-out = mido.open_output(name)
+
+
+def opened(names, open_port):
+    ports = {}
+    for n in names:
+        try:
+            ports[n] = open_port(n)
+        except (OSError, IOError):           # (a port another program holds)
+            pass
+    return ports
+
+
+def find():
+    """the (input, output) of the FM-1: the input a HELLO answer comes in on, and the output of the same device"""
+    outs = [n for n in mido.get_output_names() if not a.port or a.port in n]
+    ins = opened([n for n in mido.get_input_names() if not a.port or a.port in n], mido.open_input)
+    outp = opened(outs, mido.open_output)
+    try:
+        for _ in range(3):                    # three HELLOs, as the page sends: other gear ignores them
+            for o in outp.values():
+                o.send(mido.Message("sysex", data=H + [1, 1]))
+            t = time.time()
+            while time.time() - t < 0.5:
+                for n, i in ins.items():
+                    for m in i.iter_pending():
+                        if m.type == "sysex" and list(m.data[:4]) == H + [1]:
+                            o = next((k for k in outp if k.split(":")[0] == n.split(":")[0]), None)
+                            if o:
+                                return n, o
+                time.sleep(0.01)
+        return None, None
+    finally:
+        for p in list(ins.values()) + list(outp.values()):
+            p.close()
+
+
+in_name, out_name = find()
+if not in_name:
+    sys.exit("no FM-1 answered: plug it in; its firmware needs screen reader support" +
+             ("" if a.port else " (or name its port: --port)"))
+inp = mido.open_input(in_name)
+out = mido.open_output(out_name)
 t0 = last = 0.0
 where_at, said = 0, False
 t0 = time.time()
@@ -34,7 +74,7 @@ while not a.seconds or time.time() - t0 < a.seconds:
                     where_at = time.time() + 0.4  # and only if it didn't send the screen by itself
             else:
                 said = True
-                print("said%s: %s" % ("!" if d[4] & 1 else "", text), flush=True)
+                print("said%s%s: %s" % ("!" if d[4] & 1 else "", " (warning)" if d[4] & 2 else "", text), flush=True)
     if where_at and time.time() > where_at:
         if not said:
             out.send(mido.Message("sysex", data=H + [3]))

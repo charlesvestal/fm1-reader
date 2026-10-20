@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 // web/words.js: the screen's text in words (a firmware's list, then the common rules).   node tests/words_test.mjs
-import { spoken, wordsOf } from '../web/words.js';
+import { spoken, wordsOf, WORDS_MAX, WORD_MAX } from '../web/words.js';
+import { clean, SPEAK_MAX } from '../web/tts.js';
 
 const LIST = [['BD', 'bass drum'], ['909', 'nine oh nine'], ['909 GR', 'nine oh nine groove'], ['P#', 'pattern #'],
     ['P#-#', 'patterns # to #'], ['STEP #: #:#', 'step #: loop # of every #'], ['NEW LINE *', 'new line'],
@@ -54,5 +55,14 @@ for (const [s, want] of CASES) {
 if (spoken('BD TUNE 37') !== 'bd tune 37') { console.log('FAIL: no list: capitals not made words'); fails++; }
 try { wordsOf({ format: 2, words: [] }); console.log('FAIL: format 2 taken'); fails++; } catch (e) { /* refused */ }
 if (wordsOf({ format: 1, words: [['A', 'b'], ['', 'x'], [1, 2]] }).length !== 1) { console.log('FAIL: bad entries kept'); fails++; }
+// a words file within bounds (its link comes from whatever answers on a MIDI port)
+try { wordsOf({ format: 1, words: Array(WORDS_MAX + 1).fill(['A', 'b']) }); console.log('FAIL: too many entries taken'); fails++; } catch (e) { /* refused */ }
+if (wordsOf({ format: 1, words: [['A'.repeat(WORD_MAX + 1), 'b'], ['C', 'd'.repeat(WORD_MAX + 1)], ['E', 'f']] }).length !== 1) {
+    console.log('FAIL: an entry too long kept'); fails++;
+}
+// what the voice is given: no control characters, bounded
+if (clean('a\u0000b\u001bc\u0085d') !== 'a b c d' || clean('x'.repeat(SPEAK_MAX + 50)).length !== SPEAK_MAX) {
+    console.log('FAIL: tts clean'); fails++;
+}
 console.log(fails ? `words: ${fails} FAILED` : `words: all ${CASES.length} passed`);
 process.exit(fails ? 1 : 0);

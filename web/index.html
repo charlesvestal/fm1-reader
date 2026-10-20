@@ -147,7 +147,8 @@ const prefs = (() => { try { return JSON.parse(localStorage.getItem('fm1-reader'
 const save = () => { try { localStorage.setItem('fm1-reader', JSON.stringify(prefs)); } catch (e) { /* private window */ } };
 
 let tts = null, reader = null, last = '', lastScreen = '', lastKeep = false;
-let words = [], wordsNote = '';           // (the last one found's; each reader keeps its own: r.list)
+let words = [], wordsNote = '';
+const WORDS_FILE_MAX = 512 * 1024;        // (characters: the biggest words file so far is under 10 KB)           // (the last one found's; each reader keeps its own: r.list)
 
 // a firmware's words file: fetched from the link its HELLO gives, kept (a link is never changed: the same link,
 // the same words), so the page works offline once it has been used with that firmware
@@ -160,9 +161,12 @@ async function loadWords(url) {
         if (kept) { words = wordsOf(JSON.parse(kept)); wordsNote = ''; return words; }
     } catch (e) { /* not kept, or private */ }
     try {
-        const r = await fetch(url, { mode: 'cors' });
+        // (no cookies and no referrer to the site the device names; a words file is a few kilobytes)
+        const r = await fetch(url, { mode: 'cors', credentials: 'omit', referrerPolicy: 'no-referrer' });
         if (!r.ok) throw new Error(r.status);
-        const json = await r.json();
+        const body = await r.text();
+        if (body.length > WORDS_FILE_MAX) throw new Error('too big for a words file');
+        const json = JSON.parse(body);
         words = wordsOf(json);
         wordsNote = '';
         try { localStorage.setItem(key, JSON.stringify(json)); } catch (e) { /* full, or private */ }
