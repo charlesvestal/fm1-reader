@@ -22,7 +22,7 @@ self.onmessage = async (e) => {
         return;
     }
     if (m.type === 'speak') {
-        const p = M.stringToNewUTF8(String(m.text));
+        const p = M.stringToNewUTF8(String(m.text).slice(0, 1000));   // (tts.js cleans it; this bounds it again)
         const n = M._tts_synth(p, m.rate | 0, m.pitch | 0);
         M._free(p);
         const pcm = n > 0 ? M.HEAP16.slice(M._tts_samples() >> 1, (M._tts_samples() >> 1) + n) : new Int16Array(0);

@@ -6,6 +6,14 @@
 //   tts.speak('Pattern 3 saved', { interrupt: false });   // queued after it
 // speak() resolves when the utterance has played, or was cut off / dropped.
 
+// what the voice is given: text, without control characters, at most SPEAK_MAX characters (a SAY is at most 240).
+// What a device sends reaches eSpeak NG, which has known, unfixed memory bugs in its C (OSS-Fuzz: OSV-2021-1041,
+// OSV-2023-467); it runs as WebAssembly in a worker, and this keeps its input to what a reader needs
+export const SPEAK_MAX = 1000;
+export function clean(text) {
+    return String(text).replace(/[\u0000-\u001f\u007f-\u009f]+/g, ' ').slice(0, SPEAK_MAX);
+}
+
 export async function createTTS(baseUrl = new URL('./', import.meta.url).href) {
     const base = new URL(baseUrl, location.href).href.replace(/\/?$/, '/');
     const worker = new Worker(new URL('tts_worker.js', base));
@@ -81,6 +89,7 @@ export async function createTTS(baseUrl = new URL('./', import.meta.url).href) {
     };
 
     function speak(text, { rate = 230, pitch = 50, interrupt = true, volume = 1 } = {}) {
+        text = clean(text);
         if (interrupt) stop();
         unlock();
         return new Promise((done) => {

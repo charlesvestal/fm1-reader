@@ -144,8 +144,14 @@ export function spoken(s, words = []) {
     return o;
 }
 
-// a words file, checked: { format: 1, words: [[screen, said], ...] }
+// a words file, checked: { format: 1, words: [[screen, said], ...] }. The link comes from whatever answers on a
+// MIDI port, so the file is held to what a firmware needs: at most WORDS_MAX entries (a big firmware has a few
+// hundred), each side at most WORD_MAX characters; spoken() tries every entry at every word, and a file that
+// went past these would make the page slow, not more useful
+export const WORDS_MAX = 5000, WORD_MAX = 120;
 export function wordsOf(json) {
     if (!json || json.format !== 1 || !Array.isArray(json.words)) throw new Error('not a words file (format 1)');
-    return json.words.filter((w) => Array.isArray(w) && typeof w[0] === 'string' && typeof w[1] === 'string' && w[0]);
+    if (json.words.length > WORDS_MAX) throw new Error(`not a words file (more than ${WORDS_MAX} entries)`);
+    return json.words.filter((w) => Array.isArray(w) && typeof w[0] === 'string' && typeof w[1] === 'string' && w[0] &&
+                                    w[0].length <= WORD_MAX && w[1].length <= WORD_MAX);
 }
