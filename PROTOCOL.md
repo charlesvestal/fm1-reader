@@ -1,7 +1,7 @@
 # FM-1 screen reader protocol (version 1)
 
-A firmware with `firmware/announce.c` tells a reader what its screen shows. The reader is any program on the
-computer: the page in `web/`, or `tools/fm1_reader.py`.
+A firmware with `announce.c` (fm1-base's `device/announce.c`) tells a reader what its screen shows. The
+reader is any program on the computer: the page in `web/`, or `tools/fm1_reader.py`.
 
 **The firmware is in charge of the words, without spending flash on them.**
 - It sends its screen's own text ("BD TUNE 37").
@@ -43,9 +43,9 @@ SAY flags:
 {"format":1,"words":[["BD","bass drum"],["P#","pattern #"],["LENGTH # st","length # steps"],["NEW LINE *","new line"]]}
 ```
 
-- **What it holds.** `firmware/words.tsv` lists the screen's text and what to say. `tools/gen_words.py`
-  turns it into the JSON file: the firmware's own words first, then the common ones (FX, dB, MIDI CH, …), so
-  the file holds everything for that build.
+- **What it holds.** `firmware/words.tsv` lists the screen's text and what to say. `gen_words.py` (fm1-base's
+  `tools/gen_words.py`) turns it into the JSON file: the firmware's own words first, then the common ones (FX,
+  dB, MIDI CH, …), so the file holds everything for that build.
 - **How it's named.** The file name is a fingerprint of the content (`c8a6bb1555.json`): the same words give
   the same file. A file is never changed or deleted. Each firmware keeps all of its files in its repo
   (`web/words/`) and publishes them on its own site.
@@ -72,4 +72,5 @@ SAY flags:
   ~500 ms while it keeps turning.
 - **No waiting.** The device never waits to send: with no room in its USB queue, the message is dropped.
 - **Finding devices.** A reader that doesn't know which port is an FM-1 sends HELLO to each port a few times
-  and keeps the ones that answer. The page in `web/` stops asking a port after three tries.
+  and keeps the ones that answer. The page in `web/` stops asking a port after three tries. An answer always
+  has a name: a port that sends the HELLO back as it went (a loopback, such as macOS's IAC bus) is not a device.

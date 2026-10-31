@@ -1,19 +1,31 @@
 #!/bin/sh
 # SPDX-License-Identifier: MIT
-# Copy announce.c and gen_words.py into a firmware, or check that its copies are these.
-#   tools/sync_announce.sh ../fm1-x0x            copy to firmware/src/announce.c and tools/gen_words.py
-#   tools/sync_announce.sh --check ../fm1-x0x    exit 1 if one differs
+# The shared files whose one copy is fm1-base's: copy them, or check the copies are the same.
+#   - web/fm1ports.js (finding FM-1s on Web MIDI) into this repository's web/, for the page (reader.js).
+#   - device/announce.c and tools/gen_words.py (the screen reader's firmware side) into each firmware named that is not
+#     on fm1-base, as firmware/src/announce.c and tools/gen_words.py. A firmware on fm1-base has them from base/.
+#   tools/sync_announce.sh                       copy web/fm1ports.js here
+#   tools/sync_announce.sh ../fm1-x0x ...        and announce.c and gen_words.py into those firmwares
+#   tools/sync_announce.sh --check [FIRMWARE...] exit 1 if a copy differs
+# fm1-base: FM1_BASE, or ../fm1-base next to this repository. Change the files there, run its tests, then sync.
 set -e
 R="$(cd "$(dirname "$0")/.." && pwd)"
+B="${FM1_BASE:-$R/../fm1-base}"
 check=0
 [ "$1" = "--check" ] && { check=1; shift; }
+[ -f "$B/device/announce.c" ] && [ -f "$B/web/fm1ports.js" ] || { echo "no fm1-base at $B (set FM1_BASE)"; exit 2; }
+B="$(cd "$B" && pwd)"
+bad=0
+one() {   # FROM TO
+    if [ $check = 1 ]; then
+        if cmp -s "$1" "$2"; then echo "same: $2"; else echo "DIFFERS: $2 (from $1)"; bad=1; fi
+    else
+        cp "$1" "$2" && echo "copied: $2"
+    fi
+}
+one "$B/web/fm1ports.js" "$R/web/fm1ports.js"
 for fw in "$@"; do
-    for pair in "firmware/announce.c firmware/src/announce.c" "tools/gen_words.py tools/gen_words.py"; do
-        set -- $pair
-        if [ $check = 1 ]; then
-            cmp -s "$R/$1" "$fw/$2" && echo "same: $fw/$2" || { echo "DIFFERS: $fw/$2"; exit 1; }
-        else
-            cp "$R/$1" "$fw/$2" && echo "copied: $fw/$2"
-        fi
-    done
+    one "$B/device/announce.c" "$fw/firmware/src/announce.c"
+    one "$B/tools/gen_words.py" "$fw/tools/gen_words.py"
 done
+exit $bad

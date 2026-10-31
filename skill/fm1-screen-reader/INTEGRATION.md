@@ -5,9 +5,13 @@ same in each. X0X is the worked example: `fm1-x0x/firmware/src/app/ui.c`, the "s
 
 ## 1. The shared files
 
-Run `fm1-reader/tools/sync_announce.sh ../fm1-<name>`. It copies `announce.c` into `firmware/src/` and
-`gen_words.py` into `tools/`. Don't edit the copies: change the originals in fm1-reader, run its tests, and
-sync again (`--check` reports a copy that differs).
+A firmware on fm1-base has them in `base/` (`device/announce.c`, `tools/gen_words.py`), and its platform already
+does sections 1 and 2: go on to section 3.
+
+Otherwise run `fm1-reader/tools/sync_announce.sh ../fm1-<name>`, with fm1-base next to fm1-reader (or
+`FM1_BASE=...`). It copies fm1-base's `device/announce.c` into `firmware/src/` and its `tools/gen_words.py` into
+`tools/`. Don't edit the copies: change the originals in fm1-base, run its tests, and sync again (`--check`
+reports a copy that differs).
 
 ## 2. The platform: send, receive, tick
 

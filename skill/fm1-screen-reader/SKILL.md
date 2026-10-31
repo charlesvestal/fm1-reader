@@ -15,11 +15,19 @@ The firmware tells a reader on the computer what its screen shows, over USB-MIDI
   https://charlesvestal.github.io/fm1-reader/). It fetches the words file, then shows and speaks the result,
   or hands it to the user's own screen reader.
 
-Everything lives in the `fm1-reader` repo (next to the firmware: `../fm1-reader`, or clone
+The firmware side lives in `fm1-base` (github.com/charlesvestal/fm1-base), its one copy. A firmware on fm1-base
+has both files already, in `base/`:
+
+- `device/announce.c`: the shared code (protocol, timing), with its test `tests/announce_test.c`.
+- `tools/gen_words.py`: words.tsv to the words file and the link.
+
+A firmware not on fm1-base (on Felucca's platform) carries copies of them, made by fm1-reader's
+`tools/sync_announce.sh`.
+
+Everything else lives in the `fm1-reader` repo (next to the firmware: `../fm1-reader`, or clone
 github.com/charlesvestal/fm1-reader):
 
-- `firmware/announce.c`: the shared code (protocol, timing). One copy; firmwares copy it.
-- `tools/gen_words.py`: words.tsv to the words file and the link. Copied into each firmware too.
+- `tools/sync_announce.sh`: copies fm1-base's two files into a firmware not on fm1-base, or checks its copies.
 - `web/words.js`: how the reader says a text with a words file; used by the page, the audit and the tests.
 - `PROTOCOL.md`: the SysEx.
 - `skill/fm1-screen-reader/INTEGRATION.md`: how to wire it in, step by step, with code.
@@ -28,7 +36,6 @@ github.com/charlesvestal/fm1-reader):
   checker for them, `tools/a11y/check.mjs`.
 - `tools/audit.mjs`: checks a firmware's words against the rules.
 - `tools/fm1_reader.py`: a reader in the terminal, for checking the device.
-- `tests/announce_test.c`: announce.c's own test.
 
 ## The work, in order
 
@@ -39,7 +46,7 @@ Use a task list. Don't skip the audit or the device check.
    - its views, pages and knobs
    - lists, help cards, questions
    - what the keys do
-2. **Wire it in** (INTEGRATION.md, sections 1–2): `sync_announce.sh`, `ann_wire_send`, the queue size, the
+2. **Wire it in** (INTEGRATION.md, sections 1–2): `sync_announce.sh` (not on fm1-base), `ann_wire_send`, the queue size, the
    frames in, `ann_tick`, and messages through `ann_say` (warnings with ANN_KEEP).
 3. **The words file** (section 3): `firmware/words.tsv` with its `# url:` line, `gen_words.py` in all three
    builds, and `web/words/` committed and published with the site. Add every abbreviation the screen uses,
@@ -72,11 +79,12 @@ Use a task list. Don't skip the audit or the device check.
    - Then publish the words file (the site, or just `words/`), open the page in Chrome, and try it with its
      voice and with VoiceOver.
    - Before publishing, drop the JSON file onto the page instead.
-9. **Tests:** the firmware's test script passes, and `cc ... ../fm1-reader/tests/announce_test.c` too, if
+9. **Tests:** the firmware's test script passes, and fm1-base's tests too (`tests/announce_test.c`), if
    announce.c changed.
 10. **Releasing** (with the firmware's usual release steps):
-    - `sync_announce.sh --check .` passes. If it fails, sync, rebuild, and audit again: fm1-reader may have
-      changed the common words, which makes a new words file.
+    - Not on fm1-base: `../fm1-reader/tools/sync_announce.sh --check .` passes. If it fails, sync, rebuild,
+      and audit again: fm1-base may have changed the common words, which makes a new words file. (On fm1-base,
+      updating `base/` does the same.)
     - The words file the release build links to (`build/gen/ann_words.h`) is committed in `web/words/`.
     - Publish the site with the release, so the link works the day the release goes out. Check it:
       `curl -sI <the link>` gives 200.
@@ -104,4 +112,4 @@ Use a task list. Don't skip the audit or the device check.
 - Send anything before a HELLO: announce.c already holds back, so don't get around it.
 - Wait in `ann_wire_send`: drop the message when the queue is full.
 - Build text in the audio interrupt or on the 8 KiB system stack.
-- Edit a firmware's copy of announce.c. Change fm1-reader's, run its test, and sync.
+- Edit a firmware's copy of announce.c. Change fm1-base's (`device/announce.c`), run its tests, and sync.
