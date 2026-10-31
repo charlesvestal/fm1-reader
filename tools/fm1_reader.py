@@ -5,7 +5,7 @@ text as it is sent (the page puts it in words with the firmware's words file).
    fm1_reader.py [--where] [--seconds N] [--port NAME]     needs mido + python-rtmidi
 The FM-1 is found as the page finds it: every port is asked (HELLO) and the one that answers is it, whatever its
 name ("FM-1", "X0X", "Felucca", ...). --port picks one by (part of) its name instead."""
-import argparse, sys, time
+import argparse, re, sys, time
 import mido
 
 H = [0x7D, 0x53, 0x52]
@@ -21,9 +21,14 @@ def opened(names, open_port):
     for n in names:
         try:
             ports[n] = open_port(n)
-        except (OSError, IOError):           # (a port another program holds)
+        except Exception:                    # (a port another program holds: python-rtmidi's errors are not OSError)
             pass
     return ports
+
+
+def device(name):
+    """a port's device: ALSA's client ("FM-1:FM-1 MIDI 1 20:0"), without the number Windows puts after each port"""
+    return re.sub(r"\s+\d+$", "", name.split(":")[0])
 
 
 def find():
@@ -39,8 +44,9 @@ def find():
             while time.time() - t < 0.5:
                 for n, i in ins.items():
                     for m in i.iter_pending():
-                        if m.type == "sysex" and list(m.data[:4]) == H + [1]:
-                            o = next((k for k in outp if k.split(":")[0] == n.split(":")[0]), None)
+                        # an answer has a name: a loopback (macOS's IAC bus) sends the HELLO back without one
+                        if m.type == "sysex" and list(m.data[:4]) == H + [1] and bytes(m.data[5:]).split(b"\0")[0]:
+                            o = next((k for k in outp if device(k) == device(n)), None)
                             if o:
                                 return n, o
                 time.sleep(0.01)

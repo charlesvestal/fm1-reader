@@ -147,8 +147,8 @@ const prefs = (() => { try { return JSON.parse(localStorage.getItem('fm1-reader'
 const save = () => { try { localStorage.setItem('fm1-reader', JSON.stringify(prefs)); } catch (e) { /* private window */ } };
 
 let tts = null, reader = null, last = '', lastScreen = '', lastKeep = false;
-let words = [], wordsNote = '';
-const WORDS_FILE_MAX = 512 * 1024;        // (characters: the biggest words file so far is under 10 KB)           // (the last one found's; each reader keeps its own: r.list)
+let words = [], wordsNote = '';           // (the last one found's; each reader keeps its own: r.list)
+const WORDS_FILE_MAX = 512 * 1024;        // (characters: the biggest words file so far is under 10 KB)
 
 // a firmware's words file: fetched from the link its HELLO gives, kept (a link is never changed: the same link,
 // the same words), so the page works offline once it has been used with that firmware
