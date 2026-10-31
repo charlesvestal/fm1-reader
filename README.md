@@ -76,4 +76,7 @@ MIT (see LICENSE), so any firmware can use it, GPL or not. The exceptions:
   GPL-3.0-or-later, like eSpeak NG. A page that uses the voice carries both side by side.
 - `web/fm1ports.js` is fm1-base's, MPL-2.0 (its header says so).
 
-The firmware side, `announce.c` and `gen_words.py`, is MIT in fm1-base too.
+The firmware side, `announce.c` and `gen_words.py`, lives in fm1-base and is MPL-2.0 there, like the rest of
+fm1-base (it was MIT here). MPL-2.0 is compatible with the GPL, so GPL firmwares can carry it. The copies already in
+the older firmwares not on fm1-base (X0X, FoMni-1, MONK-1 and Mocky, which are GPL) stay under their repositories'
+licences until `tools/sync_announce.sh` copies them again.

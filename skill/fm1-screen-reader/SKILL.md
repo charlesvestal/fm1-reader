@@ -22,7 +22,8 @@ has both files already, in `base/`:
 - `tools/gen_words.py`: words.tsv to the words file and the link.
 
 A firmware not on fm1-base (on Felucca's platform) carries copies of them, made by fm1-reader's
-`tools/sync_announce.sh`.
+`tools/sync_announce.sh`. They are MPL-2.0, which GPL firmwares can carry; older copies keep the licence they came
+with until they are synced again.
 
 Everything else lives in the `fm1-reader` repo (next to the firmware: `../fm1-reader`, or clone
 github.com/charlesvestal/fm1-reader):

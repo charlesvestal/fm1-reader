@@ -11,7 +11,8 @@ does sections 1 and 2: go on to section 3.
 Otherwise run `fm1-reader/tools/sync_announce.sh ../fm1-<name>`, with fm1-base next to fm1-reader (or
 `FM1_BASE=...`). It copies fm1-base's `device/announce.c` into `firmware/src/` and its `tools/gen_words.py` into
 `tools/`. Don't edit the copies: change the originals in fm1-base, run its tests, and sync again (`--check`
-reports a copy that differs).
+reports a copy whose content differs; their licence and copyright lines are not compared). The files are MPL-2.0,
+which a GPL firmware can carry.
 
 ## 2. The platform: send, receive, tick
 
