@@ -15,6 +15,7 @@ Firmwares with support:
 - [MONK-1](https://charlesvestal.github.io/fm1-monk/) 0.9.1+
 - [Mocky](https://charlesvestal.github.io/fm1-mocky/) 0.9.1+
 - [CTL-1](https://charlesvestal.github.io/fm1-ctl/) 0.9.1+
+- [OCA-1](https://charlesvestal.github.io/fm1-ocarina/) 0.9+
 
 ## For firmware developers
 
