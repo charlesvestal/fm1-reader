@@ -16,6 +16,19 @@ Firmwares with support:
 - [Mocky](https://charlesvestal.github.io/fm1-mocky/) 0.9.1+
 - [CTL-1](https://charlesvestal.github.io/fm1-ctl/) 0.9.1+
 - [OCA-1](https://charlesvestal.github.io/fm1-ocarina/) 0.9+
+- [LOOM-8](https://charlesvestal.github.io/fm1-loom/) 0.5+
+- [Boardwalk](https://charlesvestal.github.io/fm1-boardwalk/) 0.9+
+- [Ripple](https://charlesvestal.github.io/fm1-ripple/) 0.1+
+- [Radio](https://charlesvestal.github.io/fm1-radio/) 1.1+
+- [Ravel](https://de-pattern.github.io/Ravel_FM1/) 0.91.0+
+- [SiDJ](https://thomasj.github.io/fm1-sidj/) 1.5.0+
+- [Tessera](https://rastapopolix.github.io/tessera/) 3.4+
+- [Arctic Scream](https://polarpatch.github.io/Arctic-scream-FM-1/) 1.5+
+
+[Tonitor](https://nzimas.github.io/tonitor/) has a screen reader of its own, built into the firmware: it speaks
+through the headphone output and needs no computer (in its settings, or hold SHIFT and press black key 8).
+
+Thanks to João Durães (WoodJack) for asking other developers to add support.
 
 ## For firmware developers
 
