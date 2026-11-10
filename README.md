@@ -24,9 +24,16 @@ Firmwares with support:
 - [SiDJ](https://thomasj.github.io/fm1-sidj/) 1.5.0+
 - [Tessera](https://rastapopolix.github.io/tessera/) 3.4+
 - [Arctic Scream](https://polarpatch.github.io/Arctic-scream-FM-1/) 1.5+
+- [Penumbra](https://madmooneyham.github.io/Penumbra/)
+- [Ombak](https://madmooneyham.github.io/Ombak/)
+- [AISLING](https://stephencummins.github.io/fm1-aisling/)
+- [NACHTFAHRT](https://fartypants.github.io/fm1-nachtfahrt/)
+- [DUB-1](https://sbegueria.github.io/fm1-dub/)
+- [FiMba-1](https://jadamsowers.github.io/fm1-fimba/)
 
-[Tonitor](https://nzimas.github.io/tonitor/) has a screen reader of its own, built into the firmware: it speaks
-through the headphone output and needs no computer (in its settings, or hold SHIFT and press black key 8).
+[Tonitor](https://nzimas.github.io/tonitor/) and [Bigorna](https://nzimas.github.io/bigorna/) have a screen reader
+of their own, built into the firmware: it speaks through the headphone output and needs no computer. In Tonitor,
+turn it on in its settings, or hold SHIFT and press black key 8.
 
 Thanks to João Durães (WoodJack) for asking other developers to add support.
 
