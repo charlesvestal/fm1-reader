@@ -30,6 +30,30 @@ Firmwares with support:
 - [NACHTFAHRT](https://fartypants.github.io/fm1-nachtfahrt/)
 - [DUB-1](https://sbegueria.github.io/fm1-dub/)
 - [FiMba-1](https://jadamsowers.github.io/fm1-fimba/)
+- [CHOPPAH](https://profikid.github.io/fm1-break-choppah/)
+- [Berlinan](https://jiripisa.github.io/fm1-berlinan/)
+- [Pigeon](https://theshrimpblimp.com/pigeon/)
+- [Quadro](https://matttallison.github.io/quadro-fm1/)
+- [FMtribe](https://guinanno1.github.io/FMtribe/)
+- [fm1-wheel](https://ograndebe.github.io/fm1wheel/)
+- [FM1 YOGA](https://michamilz.github.io/fm1-yoga/)
+- [MPFM1](https://michaelaperry.github.io/MPFM1/)
+- [CTL-Logic](https://asibal.github.io/ctl-logic/)
+- [StoryBox](https://thatzachfish.github.io/StoryBox/)
+- [XENOLITH](https://github.com/CaptainChronosis/XENOLITH)
+- [ESTAMPIE](https://fm-1.drewr.dev/estampie/)
+- [Cut-A-Dor](https://cut-a-dor.sugarypixie10.chatgpt.site/)
+- [MIDIMON](https://github.com/ignis32/midimonitor_fm1)
+- [RELAY-16](https://github.com/davidpryan/fm1-relay)
+- [MOSS-1](https://github.com/theowecker/fm1-moss)
+- [Typhoon](https://github.com/ignis32/typhoon_fm1)
+- [Haunted](https://github.com/davidpryan/haunted-fm1)
+- [AMB-1 Evolved](https://github.com/kidbee85-beep/AMB-1-Evolved)
+
+These read the screen, but with only the common words, not their own:
+[OG Synth](https://ogsynth.cc), [Kris Jangle](https://doohinkus.github.io/kris-jangle/),
+[Amenity](https://github.com/ejtb76/amenity), [MODELAR](https://github.com/hirakos999/MODELAR),
+[AQUORA](https://github.com/CodingSlapfu/AQUORA) and [Emerald-YM](https://github.com/CaspiusLabs/Emerald-YM).
 
 [Tonitor](https://nzimas.github.io/tonitor/) and [Bigorna](https://nzimas.github.io/bigorna/) have a screen reader
 of their own, built into the firmware: it speaks through the headphone output and needs no computer. In Tonitor,
