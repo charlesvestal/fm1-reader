@@ -8,7 +8,7 @@
 set -e
 cd "$(dirname "$0")/.."
 ROOT=$(pwd)
-COMMIT=ba90c8e9f440ad544f674a790bb5f53878b6ffc5
+COMMIT=688cb60368d6e0998f3632af8d1c3c2ad4191fc2
 SRC=${1:-${ESPEAK_SRC:-}}
 if [ -z "$SRC" ]; then
     SRC=build/espeak-src
