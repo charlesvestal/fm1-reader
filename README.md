@@ -49,6 +49,7 @@ Firmwares with support:
 - [Typhoon](https://github.com/ignis32/typhoon_fm1)
 - [Haunted](https://github.com/davidpryan/haunted-fm1)
 - [AMB-1 Evolved](https://github.com/kidbee85-beep/AMB-1-Evolved)
+- [KRIECHSTROM](https://xforsa.github.io/kriechstrom/) 0.4+
 
 These read the screen, but with only the common words, not their own:
 [OG Synth](https://ogsynth.cc), [Kris Jangle](https://doohinkus.github.io/kris-jangle/),
