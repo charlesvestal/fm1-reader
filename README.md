@@ -44,14 +44,27 @@ Firmwares with support:
 - [AMB-1 Evolved](https://github.com/kidbee85-beep/AMB-1-Evolved)
 - [KARMA](https://eatyourgreensstudio-dotcom.github.io/karma-fm1/)
 - [keySTEP ONE](https://github.com/dzwerg/keySTEP-ONE)
+- [Mighty Arp](https://nickculbertson.github.io/FM1-Mighty-Arp/)
+- [Kris Jangle](https://doohinkus.github.io/kris-jangle/)
+- [JAMTRACK](https://philip-bos.github.io/jamtrack-fm1/)
+- [DEEP FIELD](https://deepfield.fog.baby/)
+- [PaperLagoon](https://hacha.github.io/paperlagoon/)
+- [Manifold](https://stets43.github.io/Manifold/)
+- [Niagara Drift](https://evanyerburgh.github.io/niagara-drift/)
+- [FRASIL](https://frasilsynth.com/)
+- [HADAL-1](https://sparky480v.github.io/hadal-1/)
+- [Tekstuur](https://barnir-fm1.pages.dev/tekstuur/)
+- [Golf](https://barnir-fm1.pages.dev/golf/)
+- [Mutable Dreams](https://kidbee85-beep.github.io/mutable-dreams/)
+- [Shrub](https://shrub.audio)
 
 These read the screen, but with only the common words, not their own:
-[OG Synth](https://ogsynth.cc), [Kris Jangle](https://doohinkus.github.io/kris-jangle/),
-[MODELAR](https://github.com/hirakos999/MODELAR) and [Emerald-YM](https://github.com/CaspiusLabs/Emerald-YM).
+[OG Synth](https://ogsynth.cc), [MODELAR](https://github.com/hirakos999/MODELAR) and [Emerald-YM](https://github.com/CaspiusLabs/Emerald-YM).
 
-[Tonitor](https://nzimas.github.io/tonitor/) and [Bigorna](https://nzimas.github.io/bigorna/) have a screen reader
-of their own, built into the firmware: it speaks through the headphone output and needs no computer. In Tonitor,
-turn it on in its settings, or hold SHIFT and press black key 8.
+[Tonitor](https://nzimas.github.io/tonitor/), [Bigorna](https://nzimas.github.io/bigorna/) and
+[Adrift](https://romainguy.github.io/adrift/) have a screen reader of their own, built into the firmware: it speaks
+through the headphone output and needs no computer. In Tonitor, turn it on in its settings, or hold SHIFT and press
+black key 8. Adrift's has its own voice, and you can set how fast it speaks.
 
 Thanks to João Durães (WoodJack) for asking other developers to add support.
 
