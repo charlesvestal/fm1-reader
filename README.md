@@ -57,14 +57,19 @@ Firmwares with support:
 - [Golf](https://barnir-fm1.pages.dev/golf/)
 - [Mutable Dreams](https://kidbee85-beep.github.io/mutable-dreams/)
 - [Shrub](https://shrub.audio)
+- [KRIECHSTROM](https://xforsa.github.io/kriechstrom/) 0.4+
+- [Guru-600](https://guru-600.com) 1.2+
+- [DUELL](https://oscillr.github.io/DUELL/) 1.3.1+
+- [FMav-1](https://github.com/wootr0p/fmav1) 0.6+
 
 These read the screen, but with only the common words, not their own:
 [OG Synth](https://ogsynth.cc), [MODELAR](https://github.com/hirakos999/MODELAR) and [Emerald-YM](https://github.com/CaspiusLabs/Emerald-YM).
 
-[Tonitor](https://nzimas.github.io/tonitor/), [Bigorna](https://nzimas.github.io/bigorna/) and
-[Adrift](https://romainguy.github.io/adrift/) have a screen reader of their own, built into the firmware: it speaks
-through the headphone output and needs no computer. In Tonitor, turn it on in its settings, or hold SHIFT and press
-black key 8. Adrift's has its own voice, and you can set how fast it speaks.
+[Tonitor](https://nzimas.github.io/tonitor/), [Bigorna](https://nzimas.github.io/bigorna/),
+[Adrift](https://romainguy.github.io/adrift/) and [FMav-1](https://github.com/wootr0p/fmav1) have a screen reader of
+their own, built into the firmware: it speaks through the headphone output and needs no computer. In Tonitor, turn it
+on in its settings, or hold SHIFT and press black key 8. Adrift's has its own voice, and you can set how fast it
+speaks. In FMav-1, hold PLAY/STOP for 2 seconds.
 
 Thanks to João Durães (WoodJack) for asking other developers to add support.
 
