@@ -9,7 +9,7 @@
 - `tts_wrap.c`: the four calls the worker uses (`tts_init`, `tts_synth(text, wpm, pitch)`,
   `tts_samples`, `tts_length`, `tts_rate`): 16-bit mono at 22050 Hz.
 
-Built from espeak-ng commit `ba90c8e9f440ad544f674a790bb5f53878b6ffc5` with
+Built from espeak-ng commit `688cb60368d6e0998f3632af8d1c3c2ad4191fc2` with
 
     tools/build_espeak_web.sh [espeak-ng checkout]   # default: clones that commit into build/espeak-src
 
