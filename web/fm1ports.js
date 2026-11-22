@@ -19,18 +19,28 @@
 // sends the HELLO back as it went out, with no name.
 
 // port names asked without being picked (any case, part of the name). "FM1": the Open firmware's "FM1 Community"
-export const PORT_NAMES = ["fm-1", "fm1", "felucca", "ota", "composite", "sinco", "usb-midi"];
+// The FM-1 firmwares of the family name their own port after themselves (an FM-1 running one shows as that name alone):
+// "optimist", "sloop", "melodee", "loom-8" / "loom8", as tools/fm1ports.py asks them too.
+export const PORT_NAMES = ["fm-1", "fm1", "felucca", "ota", "composite", "sinco", "usb-midi", "optimist", "sloop", "melodee", "loom-8", "loom8"];
 export function usualName(name, names = PORT_NAMES) {
   const n = (name || "").toLowerCase();
   return names.some((p) => n.includes(p));
 }
 
-export const livePorts = (map) => [...map.values()].filter((p) => p.state !== "disconnected");
+// never a Bluetooth MIDI port: an FM-1 paired over Bluetooth shows one beside its USB port, an install or a backup over
+// it is not offered, and it answers nothing asked of it. bluetooth = true: a list the user picks from by hand (the mirror
+// page's two drop-downs) keeps them, after the others
+export const IS_BLUETOOTH = (name) => /bluetooth/i.test(name || "");
+export const livePorts = (map, bluetooth = false) => {
+  const live = [...map.values()].filter((p) => p.state !== "disconnected" && (bluetooth || !IS_BLUETOOTH(p.name)));
+  return bluetooth ? [...live.filter((p) => !IS_BLUETOOTH(p.name)), ...live.filter((p) => IS_BLUETOOTH(p.name))] : live;
+};
 
 // an input's output: the one with its name; else the only one with its name but for a number at the end (Windows
-// numbers each port); else the only output there is. null: none
+// numbers each port); else the only output there is. null: none. A Bluetooth input (picked by hand) looks among the
+// Bluetooth outputs too
 export function outputFor(access, input) {
-  const outs = livePorts(access.outputs);
+  const outs = livePorts(access.outputs, IS_BLUETOOTH(input.name));
   const bare = (s) => (s || "").replace(/\s+\d+$/, "");
   const same = outs.filter((o) => bare(o.name) === bare(input.name));
   return outs.find((o) => o.name === input.name) || (same.length === 1 ? same[0] : null) ||
